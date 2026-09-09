@@ -30,7 +30,16 @@ umd_fees_pct <- umd_fees |> mutate(pct_change = (`Fall 2026`- `Fall 2021`)/`Fall
 Write a few sentences about what you found in those percentages. What's the story here? What questions do you have?
 
 
-After viewing these percentages, it shows me that the student activity fees increased the most between Fall2021 and Fall2026. The biggest increase I was able to see was with student sustainability because it rose roughly 150%, then followed by the shuttle bus which was about 58.3%. I noticed that athletics was the only category that did not change which I thought was interesting. It remained $399. Overall, I found the total fees increased by about 25.1%, from $1455 to $1820. The student counseling center also showed Inf for me because it had a fee increase from $0 in 2021 to $52 in 2026. Because of this a percentage increase would not be able to be calculated since it had a starting value of 0. A question I have from this is that I am curious about what caused such significant increases in certain categories. I also wonder whether the increases were from inflation, a growth in services or simply how the university funds these programs. After looking over the information and thinking about these questions, a story I can see from this would be that UMD students fees have grown more expensive over the past five years, but the increases are not consistent across all categories. After looking over the chart I think it is safe to suggest that the overall rise in student fees is being driven by increases in certain student services instead of every fee just increasing at the same rate.
+After viewing these percentages, it shows me that the student activity fees increased the most between Fall2021 and Fall2026. 
+The biggest increase I was able to see was with student sustainability because it rose roughly 150%, then followed by the shuttle bus which was about 58.3%. 
+I noticed that athletics was the only category that did not change which I thought was interesting. 
+It remained $399. 
+Overall, I found the total fees increased by about 25.1%, from $1455 to $1820. The student counseling center also showed Inf for me because it had a fee increase from $0 in 2021 to $52 in 2026. 
+Because of this a percentage increase would not be able to be calculated since it had a starting value of 0. 
+A question I have from this is that I am curious about what caused such significant increases in certain categories. 
+I also wonder whether the increases were from inflation, a growth in services or simply how the university funds these programs. 
+After looking over the information and thinking about these questions, a story I can see from this would be that UMD students fees have grown more expensive over the past five years, but the increases are not consistent across all categories. 
+After looking over the chart I think it is safe to suggest that the overall rise in student fees is being driven by increases in certain student services instead of every fee just increasing at the same rate.
 
 
 When you are done, save your work, switch to GitHub Desktop, then add, commit and push your changes to GitHub and submit the URL of the notebook in ELMS.
