@@ -9,6 +9,7 @@ In this assignment, we will be working with a dataset of total crimes reported b
 You will need to load the tidyverse library and the janitor library
 
 ```{r}
+library(tidyverse)
 ```
 
 Then you'll load the data from the web. The URL for the data is: https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/md_cities_crime_2019_2020.csv. You will create a dataframe called `md_cities` that contains the data from this URL.
@@ -16,19 +17,28 @@ Then you'll load the data from the web. The URL for the data is: https://raw.git
 ### Task 2: Load the Data
 
 ```{r}
+md_cities <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/md_cities_crime_2019_2020.csv")
 ```
 ### Task 3: Calculating Rates
 
 Calculate violent and property crime rates for each city for both years using `mutate()`. You'll create four new columns: `violent_rate_2019`, `property_rate_2019`, `violent_rate_2020`, and `property_rate_2020`. You'll need to figure out the proper unit rate, given that there are varying populations. There's no perfect choice; choose the one that works best for you. Save the results to a new dataframe called `md_cities_rates`.
 
 ```{r}
+md_cities_rates <- md_cities |> 
+  mutate(violent_rate_2019 = violent2019/pop2019 * 10000,
+         property_rate_2019 = property2019/pop2019 * 10000,
+         violent_rate_2020 = violent2020/pop2020 * 10000,
+         property_rate_2020 = property2020/pop2020 * 10000)
 ```
 
 ### Task 4: Describe the Rates
 
 Examine the new dataframe, `md_cities_rates`, by clicking on it in the Environment tab in RStudio and sorting by the rate columns. Write a couple of sentences about the results, comparing and contrasting the cities with the highest rates (both violent and property) in 2019 and 2020. Do you see any patterns? What does this tell you about crime in Maryland cities? What's the story here?
 
-ANSWER HERE
+
+
+The thing that is drawing my attention the most is that the crime rates vary a lot between Maryland cities and the cities with the highest rates are not necessarily the largest cities. I looked at both violent and property crime rates because I was unsure if the same cities would have similar rates for both, such as either high or low rates. What I think is interesting is that some smaller cities have very high rates. This is because small number of crimes can have a big impact when the population is so small. I also saw that property crime rates seem to be typically higher than violent crime rates in 2019 and 2020. For me, the story here would be to focus on why some Maryland cities experienced large changes in their crime rates during this time period while others stayed similar. I think since 2020 was the start of the COVID-19 pandemic, one theory I would look into would be whether changes in daily life and fewer people being out had an effect on property and violent crimes in different ways. I also want to look at if population size is making smaller cities rates look higher. The data does not show why these changes happen, but it would be a good start for a story about which Maryland cities experienced the biggest changes in crime and what may have caused it.
+
 
 
 ### Task 5: Calculate Percentage Change
@@ -36,19 +46,32 @@ ANSWER HERE
 Let's add two percentage change columns to your dataframe: one for violent crime rates and one for property crime rates. You'll calculate the percentage change between 2019 and 2020 for each city. Save the results to a new dataframe called `md_cities_change`.
 
 ```{r}
+md_cities_change <- md_cities_rates |> 
+  mutate(violent_pct_change = (violent_rate_2020 - violent_rate_2019) / violent_rate_2019 * 100,
+         property_pct_change = (property_rate_2020 - property_rate_2019) / property_rate_2019 * 100)
 ```
 
 ### Task 7: Describe Percentage Changes
 
 Look at the `md_cities_change` dataframe by clicking on it in the Environment tab in RStudio. Write a couple of sentences describing the percentage change results. What's more interesting here, the patterns or the outliers? What's the story in the data?
 
-ANSWER HERE
+
+
+The thing that drew my attention right away is how different the percent changes are across Maryland cities. I looked at the largest increases and decreases because I was unsure whether there was just one clear pattern throughout the state, but it looks like the changes vary by each city. I also thought it was interesting that certain cities had increases of more than 100 percent, and other cities had decreases of 100 percent. The Inf and NaN values also seemed weird to me at first. I was a bit confused by them at first, but once I looked more into them I realized that they happen when a city had zero crimes in 2019. This would make a percent change impossible to calculate. A story idea I would want to try out would be why Maryland cities saw such major changes in crime rates between 2019 and 2020 while some did not. One idea I have is that population plays a role because in smaller cities just a few more crimes can cause a huge percentage change. Another idea is the COVID-19 pandemic changed crime depending on the city. I think this could be because people were staying home and businesses operated differently during the pandemic with working remote. I would want to compare cities with the biggest changes and see the crime totals and populations before figuring out if the percentage changes cause shifts in crime.
+
+
 
 ### Task 8: Tell the Best Story
 
 Write up a lede and nutgraf of a story with the _best_ story idea you've found in this assignment. The lede should be a single sentence that summarizes the most important information in the data. The nutgraf should be a paragraph that provides more context and explains why the data is important.
 
-ANSWER HERE
+
+
+Crime rates in Maryland cities changed significantly between 2019 and 2020, with some more than doubling while others decreased.
+
+Maryland cities showed no consistent crime trend in 2020, as shown by the differences in data. Some of the most significant percentage increases were in smaller cities, where a few extra reported crimes might cause the rate to rise substantially. This raises questions about how population size can affect how crime statistics appear on paper. The changes also appeared in the first year of the COVID-19 pandemic, which brought disruptions to public areas, companies and living. Looking at the cities with the biggest increases and drops will help determine if the changes reflect shifts in crime or if 2020 is just an exception because of small populations and unusual conditions.
+
+
 
 ### Task 9: Save Your Work and Put it on GitHub
 
