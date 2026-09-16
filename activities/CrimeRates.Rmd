@@ -48,8 +48,7 @@ crimes_with_rates <- crimes |> mutate(violent_rate = violent_crime_total/populat
 
 Write a few sentences about what you found in the data. What years had the highest crime rates? What years had the lowest crime rates? Does the pattern match your expectations? What might explain some of the results you found?
 
-
-
+What caught my attention was how much the crime rates had changed over the years. I noticed that violent crime reaches its highest number in the middle before it declines. Property crime is also following the same pattern. It reaches its highest number towards the middle and than falls to its lowest number. I thought it was very interesting that both violent and property crume decline toward the later years. I think this aligns with my expectations thought because I expected the crime rates to change over time, but it surprised me how large the decline in property crime was. I would want to look more at the specific years where the crime increased and than decreased sharply and possibly look into what might have caused these changes. These might involve population, public safety efforts, economy and crime reporting as a whole.
 
 When you are done, save your work, switch to GitHub Desktop, then add, commit and push your changes to GitHub and submit the URL of the notebook in ELMS.
 
