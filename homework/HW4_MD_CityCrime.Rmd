@@ -76,3 +76,43 @@ Maryland cities showed no consistent crime trend in 2020, as shown by the differ
 ### Task 9: Save Your Work and Put it on GitHub
 
 Save this notebook, then commit it to your local repository. Push the changes to your GitHub repository and submit the URL for this file in ELMS.
+
+
+
+
+### Task 10:  Take the violent crime rates for 2020 and do three things:
+
+
+Using the 2020 violent crime rate, calculate the percentiles using `ntile()`. Save the results to a new dataframe called `md_cities_percentiles`. 
+
+
+```{r}
+md_cities_percentiles <- md_cities_rates |> 
+  mutate(percentile = ntile(violent_rate_2020, 100))
+```
+
+
+
+
+How many cities are above the 90th percentile?
+
+```{r}
+md_cities_percentiles |> 
+  filter(percentile > 90)
+```
+
+
+
+
+Calculate the Interquartile Range of the 2020 violent crime rate using `summarize()` and R's `IQR()` function. The syntax is similar to how `mean()` works.
+
+```{r}
+md_cities_percentiles |> summarize(iqr_violent_rate = IQR(violent_rate_2020))
+```
+
+Do the results change your best story idea from the previous assignment? Why or why not?
+
+
+I would say that these results do not change my story idea, but instead they make me more interested in the cities that stand out from the rest. The IQR of about 42 reveals that the spread of violent crime rates among the middle 50% of Maryland cities. This makes me want to look more into the cities that were above the 90th percentile and see if population size plays a part in their high rates. My idea I want to follow is that smaller cities may look to have higher crime rates because even a small number of crimes reported can have a large impact on their rate. I want to compare those cities to larger cities and see if the high rates reveal a larger crime problem or are because of population size.
+
+
