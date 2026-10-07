@@ -7,25 +7,66 @@ In this assignment, you'll be picking up where you left off with the M&Ms activi
 ### Task 1: Load the tidyverse
 
 
+```{r}
+library(tidyverse)
+```
+
+
 ### Task 2: Load the M&Ms dataset from https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/mandms.csv
 
 
+```{r}
+mandms <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/mandms.csv")
+```
+
 ### Task 3: Sample 5 rows of data from the dataset
+
+
+```{r}
+set.seed(15)
+sample_5 <- mandms |> sample_n(5)
+sample_5
+```
 
 
 ### Task 4: Calculate the mean age and standard deviation of the sample, using either the red or black number of M&Ms
 
 
+```{r}
+sample_5 |>
+  summarize(
+    mean_red = mean(red),
+    sd_red = sd(red))
+```
+
+
 ### Task 5: Calculate the mean age and standard deviation of the population, using the same measure as in Task 4
+
+
+```{r}
+mandms |>
+  summarize(
+    mean_red = mean(red),
+    sd_red = sd(red))
+```
 
 
 ### Task 6: Compare the sample and population statistics
 
+
 Compare the two sets of means and standard deviations. Are they similar?
+
+
+ANSWER: I do think that the two sets are pretty similar, but they are not the exact same. The sample mean is 76.6, compared with the population mean that is about 72.98, so the sample mean is a little bit higher. The sample standard deviation is about 11.63, and the population standard deviation is about 16.45. I think this means that my sample of five happened to have less of a variation compared to the full population. Because the sample is very small, I would expect some differences when comparing the two sets. 
+
 
 ### Task 7: Describe the results
 
+
 Write a few sentences about what you found in the data. What does this tell you about the M&Ms dataset and about the act of random sampling?
+
+
+ANSWER: One thing I found in the data is that the sample of five had an average of 76.6 red M&Ms, and the full dataset had an average of about 72.98. The sample also had a smaller standard deviation than the full dataset. This shows me that a random sample is able to give a good idea of the overall data, but I do not think that it will always match the population exactly. And, with a smaller sample, random chance is able to have a bigger effect on the results. I also think that a larger random sample would most likely give a more reliable image of the full M&Ms dataset.
 
 
 When finished, save your work, switch to GitHub Desktop, then add, commit and push your changes to GitHub and submit the URL of the notebook in ELMS.
