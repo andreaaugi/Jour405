@@ -29,7 +29,11 @@ glimpse(car_thefts)
 
 We'll make a line chart using geom_line() to try and illustrate any trend over time. What's your initial reaction to the change in car thefts? Is there a trend? If your editor asked you "how many car thefts happen in a typical month?", what would you say based on this chart alone?
 
-PUT ANSWERS HERE
+
+
+PUT ANSWERS HERE: From looking at the chart, what stands out to me is that car thefts seem to be decreasing over time. I noticed that in 2023 there were some months with over 500 or 600 car thefts. But by early 2026 the number dropped to around 200. There are also some increases and decreases throughout the chart. But the overall trend appears to be going down. If my editor asked how many car thefts happen in a typical month I would want to say around 350 to 400 based on the chart. However I would also mention that recent months have had fewer thefts. So I think the average might not represent what is happening now.
+
+
 
 ```{r}
 
@@ -60,9 +64,9 @@ We've got a small number of months, so we need to quantify the uncertainty aroun
 theft_summary <- car_thefts |>
   summarize(
     mean_thefts = mean(total),
-    sd_thefts = sd(REPLACE_ME),
+    sd_thefts = sd(total),
     months = n(),
-    se_thefts = sd_thefts / sqrt(REPLACE_ME),
+    se_thefts = sd_thefts / sqrt(months),
     margin_error = qt(0.975, df = months - 1) * se_thefts
   )
 
@@ -73,7 +77,11 @@ theft_summary
 
 **Answer this question:** Explain in your own words what the margin of error tells us here. If you were writing a story, how would you use this number? For example, how would you complete this sentence: "Prince George's County averages about ___ car thefts per month, plus or minus ___."
 
-PUT ANSWERS HERE
+
+
+PUT ANSWERS HERE: In this data, the margin of error tells us how much the average number of car thefts could vary. After looking at the results, Prince George's County averages about 376 car thefts per month with a plus or minus of 34. This basically mean that I am 95% confident that the true monthly average is from about 341 and 410 car thefts. If I was writing a story, I would want to include the margin of error because it shows readers that the average is an estimate and not an exact number.
+
+
 
 ### Task 5: Build the confidence interval
 
@@ -83,8 +91,8 @@ Now let's turn the margin of error into a full confidence interval — the range
 
 theft_summary <- theft_summary |>
   mutate(
-    ci_lower = mean_thefts - REPLACE_ME,
-    ci_upper = mean_thefts + REPLACE_ME
+    ci_lower = mean_thefts - margin_error,
+    ci_upper = mean_thefts + margin_error
   )
 
 theft_summary |>
@@ -94,13 +102,21 @@ theft_summary |>
 
 **Answer this question:** If a county official claimed "car thefts are down to about 300 per month," does your confidence interval support that claim? What about a claim of 350 per month? Explain how the confidence interval helps you evaluate each claim.
 
-PUT ANSWERS HERE
+
+
+PUT ANSWERS HERE: I would say that based on the results the 95% confidence interval is between about 341 and 410 car thefts per month. This basically means that the claim of 300 car thefts per month is not supported because 300 falls way below the confidence interval. I do think that the claim of 350 car thefts per month is reasonable because 350 does fall within the interval. I think this shows why confidence intervals are important because they help us decide whether a claim is supported by the data. But I would still be careful because being within the interval does not mean the number is definitely correct.
+
+
 
 ### Task 6: Visualize the data with the confidence interval
 
 Let's make a chart showing the data with the mean and the 95% confidence interval. Does this change anything about your answer from Task 3?
 
-PUT ANSWERS HERE
+
+
+PUT ANSWERS HERE: After looking through the chart, I would say my answer changes a little. I think the average is still about 376 car thefts per month with a 95% confidence interval between 341 and 410. But something that stands out to me is that car thefts seem to be decreasing over time. This is seen toward the end of 2025 and the beginning of 2026. I noticed that some recent months even had fewer than 300 car thefts. This makes me think that the county official's claim of 300 thefts per month might be a little bit reasonable for recent months. But I do not think it is reasonable for the overall average. Before writing a story I would want to look into why car thefts are decreasing and whether this trend is continuing.
+
+
 
 ```{r}
 # Make a chart with the mean and CI
@@ -133,7 +149,7 @@ In class we learned that MoE = 1/√n × 100 as a quick approximation for polls.
 hypothetical_summary <- tibble(
   mean_thefts = theft_summary$mean_thefts,
   sd_thefts = theft_summary$sd_thefts,
-  months = REPLACE_ME,
+  months = 40,
   se_thefts = sd_thefts / sqrt(months),
   margin_error = qt(0.975, df = months - 1) * se_thefts,
   ci_lower = mean_thefts - margin_error,
@@ -155,7 +171,11 @@ comparison
 
 **Answer this question:** How did the margin of error and confidence interval change? What does this tell you about the tradeoff between having more data and being able to make precise claims? If you were covering crime trends, how many months of data would you want before writing a definitive story?
 
-PUT ANSWERS HERE
+
+
+PUT ANSWERS HERE: After going over the results, the margin of error decreased from about 34 to 30 car thefts and the number of months increased from 32 to 40. I also saw that the confidence interval also became smaller. It went from about 341–410 to 345–406 car thefts per month. I think that this shows how having more data can help us make more accurate claims because there is less uncertainty about the average. But collecting more data would also take more time. I think if I were covering crime trends I would want at least 36 months of data. I would want to compare multiple years and see if the changes are part of a larger trend. I would also want to look at any unusual increases or decreases before making a definite claim.
+
+
 
 ### Task 8: Reporting with uncertainty
 
@@ -165,7 +185,17 @@ Based on everything you've calculated, answer the following:
 
 2. Your editor says "Just tell me if car thefts are going up or down." Using only the confidence interval (no significance testing yet), what's the most accurate answer you can give? What would you need to do next to answer that question more definitively?
 
-PUT ANSWERS HERE
+
+
+PUT ANSWERS HERE: Part 1: Headline: Car thefts in Prince George's County Show Signs of Decline
+
+Lede: Car thefts in Prince George's County appear to be decreasing, according to recent crime data.
+
+Paragraph: The county averaged about 376 car thefts per month over 32 months. Data also showed a  95% confidence interval is between 341 and 410 thefts per month. Although the numbers show a drop in recent months, more data is needed to know if this decline will continue.
+
+
+Part 2. Based on the graph, car thefts appear to be going down, this is especially notable in recent months. But the confidence interval is only telling us about the average and not whether thefts are definitely decreasing. I would want to compare the numbers from different years and do more research before saying that car thefts are definitely going down.
+
 
 
 When you are finished, save your work, switch to GitHub Desktop, then add, commit and push your changes to GitHub and submit the URL of the notebook in ELMS.
