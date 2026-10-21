@@ -41,7 +41,11 @@ sleep_stats
 
 **Answer this question:** Based on these numbers alone, what would you tell the health reporter? Why might it be risky to report the average as the definitive answer for all students?
 
-ANSWER HERE
+
+
+ANSWER HERE: Just based on these numbers, I would tell the health reporter that the 37 students who were surveyed got an average of about 7.7 hours of sleep each night. Something that is standing out to me is the standard deviation of 1.35 hours, this is showing that the students sleep habits vary. I think it is interesting because even though the average is close to 8 hours, some students may be getting much less or much more sleep. I think I would want to look at the individual numbers to see how different they are. I also think it would be risky to report this average as the answer for all students because the sample only includes 37 students. This might not fully represent the entire student population. The average also does not show how much sleep each student is actually getting.
+
+
 
 ### Task 3: Calculate the standard error
 
@@ -58,7 +62,11 @@ sleep_stats
 
 **Answer this question:** The standard error is much smaller than the standard deviation. Why? What does each one measure?
 
-ANSWER HERE
+
+
+ANSWER HERE: After looking at the results, the standard deviation is about 1.35 hours. This shows how much individual students sleep varies from the average. The standard error is about 0.22 hours. This shows how much the sample average could possibly change if I surveyed different groups of 37 students. The standard error is smaller because averages tend to vary less than individual responses. This means that students may have different sleeping habits, but I think that the average is more consistent across samples.
+
+
 
 ### Task 4: Calculate a 95% confidence interval
 
@@ -79,7 +87,11 @@ sleep_stats |>
 
 **Answer this question:** Write one sentence explaining what this confidence interval means in plain English that a reader would understand.
 
-ANSWER HERE
+
+
+ANSWER HERE: From the results, I am 95% confident that the true average amount of sleep students get each night is between 7.3 and 8.2 hours.
+
+
 
 ### Task 5: Visualize the distribution with the confidence interval
 
@@ -112,7 +124,11 @@ ggplot(sleep_data, aes(x = hours)) +
 
 **Answer this question:** Look at the chart. Notice that the confidence interval is much narrower than the spread of individual data points. Why? What's the difference between the variation in individual sleep hours and the uncertainty about the average?
 
-ANSWER HERE
+
+
+ANSWER HERE: After looking at the chart, what stands out to me is that students get very different amounts of sleep. I noticed that it ranged from about 5 to 12 hours. But the confidence interval is much smaller because it is between 7.3 and 8.2 hours. I think this is because the confidence interval measures how certain we are about the average and it does not measure how much each student's sleep varies. I also think that individual sleep hours can be very different, but looking at the average of 37 students show that the results are a little more consistent. This means to me that I can be more confident about the average even though students have different sleeping habits.
+
+
 
 ### Task 6: The CDC question — is 7 hours within the interval?
 
@@ -134,7 +150,12 @@ sleep_stats |>
   b) "Students May Not Be Getting Enough Sleep, Survey Suggests"
   c) "Survey: Students Getting Recommended Amount of Sleep"
 
-ANSWER HERE
+
+
+ANSWER HERE: After looking at the results, I would say that headline a "Students Average More Than 7 Hours of Sleep" is the most justified. The results show that students get an average of 7.73 hours of sleep and the confidence interval is between 7.3 and 8.2 hours. Because the entire interval is above the CDC's recommendation of 7 hours I think this shows evidence that thea verage is above 7 hours. But I would still be careful about saying that all students are getting enough sleep because some students  may still be getting less than 7 hours. So because of this, the average does not represent every student's sleeping habits.
+
+
+
 
 ### Task 7: What about a bigger sample?
 
@@ -167,7 +188,11 @@ comparison
 
 **Answer this question:** How did the margin of error change? What does this tell you about the relationship between sample size and certainty?
 
-ANSWER HERE
+
+
+ANSWER HERE: After looking through the results, it looks like the margin of error decreased from about 0.45 hours to 0.27 hours. And the sample size increased from 37 to 100 students. I think this shows that as the sample size gets larger the margin of error gets smaller. I think that this is important because  having more students in the survey makes the estimate more accurate. I think this means that I would be more confident that the sample average is close to the true average for all students.
+
+
 
 ### Task 8: Journalistic interpretation
 
@@ -175,4 +200,12 @@ You now have all the statistics you need. Based on what you've calculated:
 
 Write a headline and a one-paragraph lede for a campus news story about student sleep habits. Your text should accurately reflect the confidence interval — don't overstate or understate the findings.
 
-ANSWER HERE
+
+
+ANSWER HERE: Headline: Recent survey finds students average more than 7 hours of sleep
+
+Lede: A recent survey of 37 college students found they get an average of 7.73 hours of sleep each night, above the CDC's recommendation of at least 7 hours. 
+
+Paragraph: The results show that researchers are 95% confident the true average is between 7.3 and 8.2 hours. These results suggest that students on average are getting more than 7 hours of sleep, but it does not mean every student is still getting enough sleep. Data showed that some students reported sleeping much less or much more than others.
+
+
