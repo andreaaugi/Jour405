@@ -58,4 +58,8 @@ weekly_wmata |>
 
 **Answer this question:** Describe the trend you see. Is ridership going up, down, or staying flat? What are the big dips, and what might explain them? What would you want to know before writing a story about Metro weekly ridership trends?
 
-ANSWER HERE
+
+
+ANSWER HERE: After looking over the graph, I saw that Metro ridership is slowly increasing overall. But I did see that there are a lot of ups and downs. What stands out to me the most are the large drops around December 2025 and January 2026. I also think these drops are interesting because ridership falls a lot but then quickly goes back up. I wonder if this could be because of the holidays, winter weather or maybe fewer people traveling during that time. However, I would not assume these are the reasons without looking into it more. Before writing a story, I would want to know if there were any major snowstorms, disruptions or holiday schedule changes during those weeks. I would also want to compare the numbers to previous years to see if these drops are normal or unusual.
+
+
