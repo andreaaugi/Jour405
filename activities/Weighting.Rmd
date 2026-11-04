@@ -9,7 +9,6 @@ install.packages("kableExtra")
 library(kableExtra)
 knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
 library(tidyverse)
-
 ```
 
 # Introduction
@@ -94,9 +93,21 @@ ggplot(nonvoters_data, aes(x = weight)) +
 
 1. What is the range of weights in this dataset?
 
+
+ANSWER: It looks like the weights range from approximately 0.23 to 3.04 and most respondents having a weight close to 1.
+
+
 2. What does it mean when a respondent has a weight of 0.23? What about 3.04?
 
+
+ANSWER: A respondent with a weight of 0.23 counts as 0.23 people in the weighted results and this means that their response has less influence. A respondent with a weight of 3.04 counts as 3.04 people and their response has more influence on the results.
+
+
 3. Why might some respondents be weighted more heavily than others?
+
+
+ANSWER: Some respondents are weighted more heavily because certain groups are underrepresented in the survey. This would give these specific respondents more weight that helps make the survey results better reflect the overall population. Groups that are over represented may also receive lower weights.
+
 
 # Exercise 1: Voter Categories and Weighting
 
@@ -233,6 +244,18 @@ kable(comparison, digits = 1, caption = "Difference Between Weighted and Unweigh
 
 1. Which voter category shows the biggest difference between weighted and unweighted results?
 
+
+ANSWER: To me it looks like the rarely/never voter category shows the biggest difference. The percentage of people who answered "Yes" decreased by 3.6 percentage points after weighting.
+
+
 2. How might these differences affect reporting on likely voter turnout?
 
+
+ANSWER: I think that these differences could affect how accurately we predict voter turnout. If we do not use weights we might overestimate or underestimate how many people are likely to vote. So I think weighting helps make the results more representative of the population.
+
+
 3. Why do you think these differences exist? What does this tell us about who might be over or under-represented in the sample?
+
+
+ANSWER: I think these differences likely exist because some types of voters responded to the survey more than others. To me the results suggest that people who rarely/never vote and answered "Yes" may have been over represented in the unweighted results. It could also be that similar respondents received lower weights. I think this shows why weighting is important for making survey results more accurate.
+
