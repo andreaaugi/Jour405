@@ -1752,12 +1752,15 @@ display: none;
 
 
 <!-- rnb-text-begin -->
-<p>This is an <a href="http://rmarkdown.rstudio.com">R Markdown</a>
-Notebook. When you execute code within the notebook, the results appear
-beneath the code.</p>
-<p>Try executing this chunk by clicking the <em>Run</em> button within
-the chunk or by placing your cursor inside it and pressing
-<em>Cmd+Shift+Enter</em>.</p>
+<p>Try to have your data identified and loaded (if not, make substantial
+progress on doing that) this week. You should create a notebook called
+final_project.Rmd in the project folder of your class repository. Put
+all notes and code in that document, and do not spare the details. If
+you have the data, describe the source, providing links to it and any
+documentation you can find. If you can load it from the Web, do that. If
+not, save a copy of the data in your project folder. IMPORTANT NOTE: do
+not save a copy if it is more than 100MB in size. Instead, contact me
+first for assistance.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-output-begin eyJkYXRhIjoiXG48IS0tIHJuYi1zb3VyY2UtYmVnaW4gZXlKa1lYUmhJam9pWUdCZ2NseHViR2xpY21GeWVTaDBhV1I1ZG1WeWMyVXBYRzVnWUdBaWZRPT0gLS0+XG5cbmBgYHJcbmxpYnJhcnkodGlkeXZlcnNlKVxuYGBgXG5cbjwhLS0gcm5iLXNvdXJjZS1lbmQgLS0+XG4ifQ== -->
@@ -1767,18 +1770,187 @@ the chunk or by placing your cursor inside it and pressing
 <!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the
-toolbar or by pressing <em>Cmd+Option+I</em>.</p>
-<p>When you save the notebook, an HTML file containing the code and
-output will be saved alongside it (click the <em>Preview</em> button or
-press <em>Cmd+Shift+K</em> to preview the HTML file).</p>
-<p>The preview shows you a rendered HTML copy of the contents of the
-editor. Consequently, unlike <em>Knit</em>, <em>Preview</em> does not
-run any R code chunks. Instead, the output of the chunk when it was last
-run in the editor is displayed.</p>
+<p>Load the data and examine it using the tidyverse and read_csv,
+describing it in your project notebook.</p>
 <!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG48IS0tIHJuYi1zb3VyY2UtYmVnaW4gZXlKa1lYUmhJam9pWUdCZ2NseHViR2xpY21GeWVTaDBhV1I1ZG1WeWMyVXBYRzVjYm1OeVlYTm9aWE5mWkdGMFlTQThMU0J5WldGa1gyTnpkaWhjSW1oMGRIQnpPaTh2Y21GM0xtZHBkR2gxWW5WelpYSmpiMjUwWlc1MExtTnZiUzlrZDJsc2JHbHpMMnB2ZFhJME1EVXZjbVZtY3k5b1pXRmtjeTl0WVdsdUwyUmhkR0V2Y0dkZlkzSmhjMmhsYzE4eU1ESTBYM0J5WlhObGJuUXVZM04yWENJcFhHNWNibWRzYVcxd2MyVW9ZM0poYzJobGMxOWtZWFJoS1Z4dVlHQmdJbjA9IC0tPlxuXG5gYGByXG5saWJyYXJ5KHRpZHl2ZXJzZSlcblxuY3Jhc2hlc19kYXRhIDwtIHJlYWRfY3N2KFwiaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2R3aWxsaXMvam91cjQwNS9yZWZzL2hlYWRzL21haW4vZGF0YS9wZ19jcmFzaGVzXzIwMjRfcHJlc2VudC5jc3ZcIilcblxuZ2xpbXBzZShjcmFzaGVzX2RhdGEpXG5gYGBcblxuPCEtLSBybmItc291cmNlLWVuZCAtLT5cbiJ9 -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeSh0aWR5dmVyc2UpXG5cbmNyYXNoZXNfZGF0YSA8LSByZWFkX2NzdihcImh0dHBzOi8vcmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbS9kd2lsbGlzL2pvdXI0MDUvcmVmcy9oZWFkcy9tYWluL2RhdGEvcGdfY3Jhc2hlc18yMDI0X3ByZXNlbnQuY3N2XCIpXG5cbmdsaW1wc2UoY3Jhc2hlc19kYXRhKVxuYGBgIn0= -->
+<pre class="r"><code>library(tidyverse)
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiZmluYWxfcHJvamVjdC5SbWQiCm91dHB1dDogaHRtbF9ub3RlYm9vawpOYW1lOiAiQW5kcmVhIEF1Z2kiCi0tLQoKVGhpcyBpcyBhbiBbUiBNYXJrZG93bl0oaHR0cDovL3JtYXJrZG93bi5yc3R1ZGlvLmNvbSkgTm90ZWJvb2suIFdoZW4geW91IGV4ZWN1dGUgY29kZSB3aXRoaW4gdGhlIG5vdGVib29rLCB0aGUgcmVzdWx0cyBhcHBlYXIgYmVuZWF0aCB0aGUgY29kZS4gCgpUcnkgZXhlY3V0aW5nIHRoaXMgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpSdW4qIGJ1dHRvbiB3aXRoaW4gdGhlIGNodW5rIG9yIGJ5IHBsYWNpbmcgeW91ciBjdXJzb3IgaW5zaWRlIGl0IGFuZCBwcmVzc2luZyAqQ21kK1NoaWZ0K0VudGVyKi4gCgpgYGB7cn0KbGlicmFyeSh0aWR5dmVyc2UpCmBgYAoKCgoKQWRkIGEgbmV3IGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqSW5zZXJ0IENodW5rKiBidXR0b24gb24gdGhlIHRvb2xiYXIgb3IgYnkgcHJlc3NpbmcgKkNtZCtPcHRpb24rSSouCgpXaGVuIHlvdSBzYXZlIHRoZSBub3RlYm9vaywgYW4gSFRNTCBmaWxlIGNvbnRhaW5pbmcgdGhlIGNvZGUgYW5kIG91dHB1dCB3aWxsIGJlIHNhdmVkIGFsb25nc2lkZSBpdCAoY2xpY2sgdGhlICpQcmV2aWV3KiBidXR0b24gb3IgcHJlc3MgKkNtZCtTaGlmdCtLKiB0byBwcmV2aWV3IHRoZSBIVE1MIGZpbGUpLiAKClRoZSBwcmV2aWV3IHNob3dzIHlvdSBhIHJlbmRlcmVkIEhUTUwgY29weSBvZiB0aGUgY29udGVudHMgb2YgdGhlIGVkaXRvci4gQ29uc2VxdWVudGx5LCB1bmxpa2UgKktuaXQqLCAqUHJldmlldyogZG9lcyBub3QgcnVuIGFueSBSIGNvZGUgY2h1bmtzLiBJbnN0ZWFkLCB0aGUgb3V0cHV0IG9mIHRoZSBjaHVuayB3aGVuIGl0IHdhcyBsYXN0IHJ1biBpbiB0aGUgZWRpdG9yIGlzIGRpc3BsYXllZC4KCg==</div>
+crashes_data &lt;- read_csv(&quot;https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/pg_crashes_2024_present.csv&quot;)
+
+glimpse(crashes_data)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiUm93czogNTIsOTI5XG5Db2x1bW5zOiAyMFxuJCBtb250aCAgICAgICAgICAgICAgICAgICAgICAgICA8Y2hyPiBcIjIwMjQtMDFcIiwgXCIyMDI0LTAxXCIsIFwiMjAyNC0wMVwiLCBcIjIwMjQtMDFcIiwgXCIyMDI0LTAxXCIsIFwiMjAyNC0wMVwiLCBcIjIwMjQtMDFcIiwgXCIyMDI0LTAxXCIsIFwiMjAy4oCmXG4kIGBDcmFzaCBTZXZlcml0eSBEZXNjcmlwdGlvbmAgIDxjaHI+IFwiRmF0YWwgQ3Jhc2hlc1wiLCBcIkZhdGFsIENyYXNoZXNcIiwgXCJGYXRhbCBDcmFzaGVzXCIsIFwiRmF0YWwgQ3Jhc2hlc1wiLCBcIkZhdGFsIENyYXNoZXNcIiwgXCJGYXRhbCDigKZcbiQgUmVwb3J0bnVtYmVyICAgICAgICAgICAgICAgICAgPGNocj4gXCJDRTQxNjIwMDY5XCIsIFwiREE0MDIyMDBKSlwiLCBcIkRBNDAyMjAwSktcIiwgXCJEQTMxOTgwMDJXXCIsIFwiREEzNDcyMDAyNlwiLCBcIk1TUDcxODYwMEJMXCIsIFwiTVNQNzM54oCmXG4kIGBDb2xsaXNpb25JbXBhY3QgRGVzY3JpcHRpb25gIDxjaHI+IFwiU2luZ2xlIFZlaGljbGVcIiwgXCJGcm9udCB0byBGcm9udFwiLCBcIlNpbmdsZSBWZWhpY2xlXCIsIFwiU2luZ2xlIFZlaGljbGVcIiwgXCJTaW5nbGUgVmVoaWNsZVwiLCBcIk/igKZcbiQgYENyYXNoIENvdW50eSBEZXNjcmlwdGlvbmAgICAgPGNocj4gXCJQcmluY2UgR2VvcmdlJ3NcIiwgXCJQcmluY2UgR2VvcmdlJ3NcIiwgXCJQcmluY2UgR2VvcmdlJ3NcIiwgXCJQcmluY2UgR2VvcmdlJ3NcIiwgXCJQcmluY2UgR2VvcmdlJ3PigKZcbiQgYExhcmdlIFZlaGljbGUgSW52b2x2ZWRgICAgICAgPGNocj4gXCJOb1wiLCBcIk5vXCIsIFwiTm9cIiwgXCJOb1wiLCBcIk5vXCIsIFwiTm9cIiwgXCJOb1wiLCBcIlllc1wiLCBcIk5vXCIsIFwiTm9cIiwgXCJOb1wiLCBcIk5vXCIsIFwiTm9cIiwgXCJOb1wiLCBcIk5vXCIsIFwi4oCmXG4kIGBNb3RvcmN5Y2xlIENyYXNoYCAgICAgICAgICAgIDxjaHI+IFwiTm9cIiwgXCJOb1wiLCBcIk5vXCIsIFwiTm9cIiwgXCJOb1wiLCBcIk5vXCIsIFwiTm9cIiwgXCJOb1wiLCBcIk5vXCIsIFwiTm9cIiwgXCJOb1wiLCBcIk5vXCIsIFwiTm9cIiwgXCJOb1wiLCBcIk5vXCIsIFwiTuKAplxuJCBgTm9uLU1vdG9yaXN0IENyYXNoYCAgICAgICAgICA8Y2hyPiBcIlllc1wiLCBcIk5vXCIsIFwiWWVzXCIsIFwiWWVzXCIsIFwiWWVzXCIsIFwiTm9cIiwgXCJOb1wiLCBcIlllc1wiLCBcIlllc1wiLCBcIlllc1wiLCBcIk5vXCIsIFwiWWVzXCIsIFwiTm9cIiwgXCJOb1wiLCDigKZcbiQgYFBlcnNvbiBJRCBDb250cmlic2AgICAgICAgICAgPGNocj4gXCIqXCIsIFwiZTUxZWZkNDItNTA4Ny00M2E1LWI1ODYtNzZlZjBjZmNhODk1XCIsIFwiMjY4YWVjMGQtMTNhNS00ZWYzLTk0MzEtZmMwNjY0ODI3Y2QwXCIsIFwiMWRmMDVi4oCmXG4kIGBQZXJzb25JRCBOTWAgICAgICAgICAgICAgICAgIDxjaHI+IFwiNDYyM2VlMzktNjdhZS00Y2NlLTg5MTQtZjUwNjc1MjM1MjEwXCIsIE5BLCBcIjI2OGFlYzBkLTEzYTUtNGVmMy05NDMxLWZjMDY2NDgyN2NkMFwiLCBcIjFkZjA1YjnigKZcbiQgYFBlcnNvbklEIE5NU2FmZXR5RXF1aXBgICAgICAgPGNocj4gXCI0NjIzZWUzOS02N2FlLTRjY2UtODkxNC1mNTA2NzUyMzUyMTBcIiwgTkEsIFwiMjY4YWVjMGQtMTNhNS00ZWYzLTk0MzEtZmMwNjY0ODI3Y2QwXCIsIFwiMWRmMDViOeKAplxuJCBgUGVyc29uSUQgT2NjYCAgICAgICAgICAgICAgICA8Y2hyPiBcImQxYzJkOWY3LTFmZGYtNGViNi04YzRmLTYwNTdjNDNjNGQ1Y1wiLCBcIipcIiwgXCIyMjdmYzg1MS1hMjM4LTRmMjgtOGI2Yi1hMTRlMzA1MTliNzRcIiwgXCJjZTNmMTHigKZcbiQgUm9hZE5hbWUgICAgICAgICAgICAgICAgICAgICAgPGNocj4gTkEsIE5BLCBcIlNUIEJBUk5BQkFTIFJEIChXQi9MKVwiLCBcIkxBTkRPVkVSIFJEXCIsIFwiQ0VOVFJBTCBBVkUgKFdCL0wpXCIsIFwiQlJBTkNIIEFWRVwiLCBcIlBFTk5TWUzigKZcbiQgYFVucmVzdHJhaW5lZCBPY2N1cGFudHNgICAgICAgPGNocj4gXCJOb1wiLCBcIlllc1wiLCBcIk5vXCIsIFwiTm9cIiwgXCJOb1wiLCBcIk5vXCIsIFwiWWVzXCIsIFwiTm9cIiwgXCJOb1wiLCBcIk5vXCIsIFwiTm9cIiwgXCJOb1wiLCBcIk5vXCIsIFwiTm9cIiwgXCJOb1wiLCDigKZcbiQgYFZlaGljbGVJRCBEYW1hZ2VgICAgICAgICAgICAgPGNocj4gXCJlZDliYmNkOS03Y2M0LTQ2MmQtYmFhMS1hMmQ3ZjQ5OWUyYzJcIiwgXCIqXCIsIFwiZDNlZWYzYTktM2JhZS00MDQ0LThkNjQtZjA5NDNhNTdjMGUxXCIsIFwiN2E2MzEy4oCmXG4kIGBWZWhpY2xlSUQgU2VxdWVuY2VgICAgICAgICAgIDxjaHI+IFwiZWQ5YmJjZDktN2NjNC00NjJkLWJhYTEtYTJkN2Y0OTllMmMyXCIsIFwiKlwiLCBcImQzZWVmM2E5LTNiYWUtNDA0NC04ZDY0LWYwOTQzYTU3YzBlMVwiLCBcIjdhNjMxMuKAplxuJCBWZWhpY2xlSUQgICAgICAgICAgICAgICAgICAgICA8Y2hyPiBcImVkOWJiY2Q5LTdjYzQtNDYyZC1iYWExLWEyZDdmNDk5ZTJjMlwiLCBcIipcIiwgXCJkM2VlZjNhOS0zYmFlLTQwNDQtOGQ2NC1mMDk0M2E1N2MwZTFcIiwgXCI3YTYzMTLigKZcbiQgYFdvcmsgWm9uZSBDcmFzaGAgICAgICAgICAgICAgPGNocj4gXCJOb1wiLCBcIk5vXCIsIFwiTm9cIiwgXCJOb1wiLCBcIk5vXCIsIFwiTm9cIiwgXCJOb1wiLCBcIk5vXCIsIFwiTm9cIiwgXCJOb1wiLCBcIk5vXCIsIFwiTm9cIiwgXCJOb1wiLCBcIk5vXCIsIFwiTm9cIiwgXCJO4oCmXG4kIExhdGl0dWRlICAgICAgICAgICAgICAgICAgICAgIDxkYmw+IDM5LjEwNTc1LCAzOC43MzQxOCwgMzguODI2NzksIDM4LjkzMzc5LCAzOC44OTE2MiwgMzguNzI3OTQsIDM4LjgxMjY5LCAzOC45NDMyMiwgMzguOTQ4NDYsIDM44oCmXG4kIExvbmdpdHVkZSAgICAgICAgICAgICAgICAgICAgIDxkYmw+IC03Ni44NjM4MywgLTc2Ljk0NDU4LCAtNzYuOTQ0OTgsIC03Ni45MTA4OCwgLTc2Ljg0OTM3LCAtNzYuODgxMjMsIC03Ni44MDQ0MiwgLTc2Ljg1Njk1LCAtNzYu4oCmXG4ifQ== -->
+<pre><code>Rows: 52,929
+Columns: 20
+$ month                         &lt;chr&gt; &quot;2024-01&quot;, &quot;2024-01&quot;, &quot;2024-01&quot;, &quot;2024-01&quot;, &quot;2024-01&quot;, &quot;2024-01&quot;, &quot;2024-01&quot;, &quot;2024-01&quot;, &quot;202…
+$ `Crash Severity Description`  &lt;chr&gt; &quot;Fatal Crashes&quot;, &quot;Fatal Crashes&quot;, &quot;Fatal Crashes&quot;, &quot;Fatal Crashes&quot;, &quot;Fatal Crashes&quot;, &quot;Fatal …
+$ Reportnumber                  &lt;chr&gt; &quot;CE41620069&quot;, &quot;DA402200JJ&quot;, &quot;DA402200JK&quot;, &quot;DA3198002W&quot;, &quot;DA34720026&quot;, &quot;MSP718600BL&quot;, &quot;MSP739…
+$ `CollisionImpact Description` &lt;chr&gt; &quot;Single Vehicle&quot;, &quot;Front to Front&quot;, &quot;Single Vehicle&quot;, &quot;Single Vehicle&quot;, &quot;Single Vehicle&quot;, &quot;O…
+$ `Crash County Description`    &lt;chr&gt; &quot;Prince George&#39;s&quot;, &quot;Prince George&#39;s&quot;, &quot;Prince George&#39;s&quot;, &quot;Prince George&#39;s&quot;, &quot;Prince George&#39;s…
+$ `Large Vehicle Involved`      &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;…
+$ `Motorcycle Crash`            &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;N…
+$ `Non-Motorist Crash`          &lt;chr&gt; &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, …
+$ `Person ID Contribs`          &lt;chr&gt; &quot;*&quot;, &quot;e51efd42-5087-43a5-b586-76ef0cfca895&quot;, &quot;268aec0d-13a5-4ef3-9431-fc0664827cd0&quot;, &quot;1df05b…
+$ `PersonID NM`                 &lt;chr&gt; &quot;4623ee39-67ae-4cce-8914-f50675235210&quot;, NA, &quot;268aec0d-13a5-4ef3-9431-fc0664827cd0&quot;, &quot;1df05b9…
+$ `PersonID NMSafetyEquip`      &lt;chr&gt; &quot;4623ee39-67ae-4cce-8914-f50675235210&quot;, NA, &quot;268aec0d-13a5-4ef3-9431-fc0664827cd0&quot;, &quot;1df05b9…
+$ `PersonID Occ`                &lt;chr&gt; &quot;d1c2d9f7-1fdf-4eb6-8c4f-6057c43c4d5c&quot;, &quot;*&quot;, &quot;227fc851-a238-4f28-8b6b-a14e30519b74&quot;, &quot;ce3f11…
+$ RoadName                      &lt;chr&gt; NA, NA, &quot;ST BARNABAS RD (WB/L)&quot;, &quot;LANDOVER RD&quot;, &quot;CENTRAL AVE (WB/L)&quot;, &quot;BRANCH AVE&quot;, &quot;PENNSYL…
+$ `Unrestrained Occupants`      &lt;chr&gt; &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;Yes&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, …
+$ `VehicleID Damage`            &lt;chr&gt; &quot;ed9bbcd9-7cc4-462d-baa1-a2d7f499e2c2&quot;, &quot;*&quot;, &quot;d3eef3a9-3bae-4044-8d64-f0943a57c0e1&quot;, &quot;7a6312…
+$ `VehicleID Sequence`          &lt;chr&gt; &quot;ed9bbcd9-7cc4-462d-baa1-a2d7f499e2c2&quot;, &quot;*&quot;, &quot;d3eef3a9-3bae-4044-8d64-f0943a57c0e1&quot;, &quot;7a6312…
+$ VehicleID                     &lt;chr&gt; &quot;ed9bbcd9-7cc4-462d-baa1-a2d7f499e2c2&quot;, &quot;*&quot;, &quot;d3eef3a9-3bae-4044-8d64-f0943a57c0e1&quot;, &quot;7a6312…
+$ `Work Zone Crash`             &lt;chr&gt; &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;No&quot;, &quot;N…
+$ Latitude                      &lt;dbl&gt; 39.10575, 38.73418, 38.82679, 38.93379, 38.89162, 38.72794, 38.81269, 38.94322, 38.94846, 38…
+$ Longitude                     &lt;dbl&gt; -76.86383, -76.94458, -76.94498, -76.91088, -76.84937, -76.88123, -76.80442, -76.85695, -76.…</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>What does it contain and what time period does it cover? Which
+columns will be most important for your analysis? What’s missing that
+you might need or want? What questions do you have about it or need help
+answering? Again, the more detail, the higher your grade.</p>
+<p>For my final project I am going to use crash data from Prince
+George’s County that my professor provided. After looking over the
+dataset I saw that it has 52,929 rows and 20 columns and includes crash
+records beginning in January 2024. The file is labeled as containing
+data from 2024 to the present but I still need to check the latest month
+included to confirm the exact time period. Also the dataset has
+information about different types of crashes, where they occurred and
+how serious they were. There are also columns for crash severity,
+collision type, road name, county and whether a crash involved a
+non-motorist, motorcycle or large vehicle. There are also latitude and
+longitude coordinates, which I think could help me identify where
+crashes occurred.</p>
+<p>Also one thing I saw is that the dataset includes crashes from across
+Prince George’s County and not just College Park. This means I will need
+to narrow down the data to focus on just the University of Maryland. I
+also saw that the dataset has a column called month which lists dates in
+a year-month format. I think this will be helpful because I want to
+compare crashes during different months of the year.</p>
+<p>Most important columns:</p>
+<p>So there are a few columns that I think will be especially important
+for my project. First is the month column which might be the most
+important column because my main question is whether pedestrian crashes
+happen more frequently during the school year compared to the summer. I
+want to use this column to organize crashes by month and compare
+September through May with June through August. I could also look at
+whether certain months have more crashes than others.</p>
+<p>The next one is the non-motorist crash column. I think this is
+another important column because I want to focus on crashes involving
+pedestrians rather than just car accidents. The column uses “Yes” and
+“No” values which should allow me to identify crashes involving
+non-motorists. But I need to find out exactly what counts as a
+non-motorist. I also think I need to be careful about describing the
+results as pedestrian crashes because not every non-motorist crash
+necessarily involves someone walking.</p>
+<p>Also latitude and longitude will be important. These columns will
+help me figure out where crashes are happening. Since I want to focus on
+College Park and the University of Maryland I could potentially use
+these coordinates to identify crashes near campus. I also think it would
+be interesting to create a map showing where crashes are concentrated.
+This could help me determine whether certain areas around campus have
+more crashes than others.</p>
+<p>The roadname column is important too because it includes the names of
+roads where crashes occurred. I think this would be helpful because I
+could identify which roads around the University of Maryland have the
+most crashes. I could also compare crashes on different roads to see
+whether there are certain locations that might be more dangerous for
+pedestrians.</p>
+<p>I think the crash severity description will also be good. This column
+describes how serious a crash was. I think this could add another part
+to my story because I could look at not only how frequently crashes
+happen but also how serious they are.</p>
+<p>Also the collision impact description column is important because it
+describes the type of collision. So I am not sure how useful this will
+be for my main question but I think it could provide additional context
+about the types of crashes happening around College Park.</p>
+<p>Lastly I think the report number column will be good because it seems
+to have a unique report number for each crash. I think this could be
+helpful for checking whether there are duplicate records in the dataset.
+I would want to make sure I am not accidentally counting the same crash
+more than once.</p>
+<p>Missing Info:</p>
+<p>One thing I noticed is that there is no obvious column specifically
+identifying pedestrian crashes. There is a column for non-motorist
+crashes. I would like to know whether there is another dataset that
+separates pedestrians from bicyclists and scooter riders.</p>
+<p>Another thing that could be helpful is a column showing whether a
+crash happened in College Park. Right now the dataset includes
+coordinates and road names but it does not look like there is a city
+column. This means I may need to use the coordinates to identify crashes
+within College Park which I am a little nervous about.</p>
+<p>Also I would like to have is information about the number of
+pedestrians in College Park during different times of the year. This
+might be a little bit ambitious but even if I find that more crashes
+happen during the school year that could simply be because there are
+more people walking around campus.</p>
+<p>I think having information about pedestrian traffic would also help
+me better understand whether the risk of a crash actually increases
+during the school year.</p>
+<p>I also need to consider that the dataset might only include crashes
+reported to the police. If smaller accidents are not reported they may
+not be included in the data.</p>
+<p>Questions I have:</p>
+<ol style="list-style-type: decimal">
+<li><p>How can I narrow down the data to College Park? The dataset only
+covers all of Prince George’s County and I am unsure of the best way to
+isolate crashes around the University of Maryland.</p></li>
+<li><p>Does the non-motorist category include pedestrians, bicyclists
+and scooter riders? I think this is important to know because I want to
+make sure I am accurately describing the types of crashes I am
+analyzing.</p></li>
+<li><p>How should I define the school year compared to the summer? Right
+now I am thinking about using September through May for the school year
+and June through August for the summer. But I know that the school year
+is much longer than the summer so I would need to compare average
+monthly crashes rather than just total crashes but that seems like a
+lot.</p></li>
+<li><p>Would it be possible to create a map showing where crashes happen
+most frequently? I think a map would make my final project more
+interesting because readers could see which roads or areas around campus
+have the most crashes. Or if there are any other graphics that might be
+interesting to us.</p></li>
+<li><p>How should I work with incomplete data from 2026?</p></li>
+</ol>
+<p>My plan:</p>
+<p>So I think this dataset offers a lot of possibilities for my final
+project. As of now I think my main goal is to determine whether crashes
+involving pedestrians or other non-motorists are more common around the
+University of Maryland during the school year compared to the summer. I
+want to start by narrowing the data to College Park and identifying
+non-motorist crashes. I think the biggest challenge will be making sure
+I am using the correct data to answer my question especially when it
+comes to identifying pedestrian crashes and determining which crashes
+happened near campus.</p>
+<div id="notes" class="section level2">
+<h2>Notes</h2>
+<p>Data link: <a href="https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/pg_crashes_2024_present.csv" class="uri">https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/pg_crashes_2024_present.csv</a></p>
+<p>For my project I am planning to focus specifically on pedestrian
+safety in College Park, particularly around the University of Maryland
+campus.</p>
+<p>My original hypothesis is that pedestrian crashes in College Park are
+more common during the school year, when more students are on campus,
+compared to the summer months when fewer students are around.</p>
+<p>I think this would be interesting to investigate because College Park
+has a lot of students walking, biking and using scooters to get around
+campus. There are also several busy roads surrounding the
+university.</p>
+<p>I want to use this data to determine whether there are certain months
+when pedestrian crashes happen more frequently and whether there are
+particular locations where crashes are more common.</p>
+<p>Before beginning my analysis, I need to understand what information
+is included in the dataset, how crashes are recorded and whether the
+data allows me to identify pedestrian-related crashes specifically.</p>
+<p>Add, commit and push your notebook and any files you’ve added, and
+submit the GitHub URL to your final_project.Rmd notebook in ELMS.</p>
+<!-- rnb-text-end -->
+</div>
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiZmluYWxfcHJvamVjdC5SbWQiCm91dHB1dDogaHRtbF9ub3RlYm9vawpOYW1lOiAiQW5kcmVhIEF1Z2kiCi0tLQoKVHJ5IHRvIGhhdmUgeW91ciBkYXRhIGlkZW50aWZpZWQgYW5kIGxvYWRlZCAoaWYgbm90LCBtYWtlIHN1YnN0YW50aWFsIHByb2dyZXNzIG9uIGRvaW5nIHRoYXQpIHRoaXMgd2Vlay4gWW91IHNob3VsZCBjcmVhdGUgYSBub3RlYm9vayBjYWxsZWQgZmluYWxfcHJvamVjdC5SbWQgaW4gdGhlIHByb2plY3QgZm9sZGVyIG9mIHlvdXIgY2xhc3MgcmVwb3NpdG9yeS4gUHV0IGFsbCBub3RlcyBhbmQgY29kZSBpbiB0aGF0IGRvY3VtZW50LCBhbmQgZG8gbm90IHNwYXJlIHRoZSBkZXRhaWxzLiBJZiB5b3UgaGF2ZSB0aGUgZGF0YSwgZGVzY3JpYmUgdGhlIHNvdXJjZSwgcHJvdmlkaW5nIGxpbmtzIHRvIGl0IGFuZCBhbnkgZG9jdW1lbnRhdGlvbiB5b3UgY2FuIGZpbmQuIElmIHlvdSBjYW4gbG9hZCBpdCBmcm9tIHRoZSBXZWIsIGRvIHRoYXQuIElmIG5vdCwgc2F2ZSBhIGNvcHkgb2YgdGhlIGRhdGEgaW4geW91ciBwcm9qZWN0IGZvbGRlci4gSU1QT1JUQU5UIE5PVEU6IGRvIG5vdCBzYXZlIGEgY29weSBpZiBpdCBpcyBtb3JlIHRoYW4gMTAwTUIgaW4gc2l6ZS4gSW5zdGVhZCwgY29udGFjdCBtZSBmaXJzdCBmb3IgYXNzaXN0YW5jZS4KCgpgYGB7cn0KbGlicmFyeSh0aWR5dmVyc2UpCmBgYAoKCkxvYWQgdGhlIGRhdGEgYW5kIGV4YW1pbmUgaXQgdXNpbmcgdGhlIHRpZHl2ZXJzZSBhbmQgcmVhZF9jc3YsIGRlc2NyaWJpbmcgaXQgaW4geW91ciBwcm9qZWN0IG5vdGVib29rLiAKCgpgYGB7ciBsb2FkLWRhdGF9CmxpYnJhcnkodGlkeXZlcnNlKQoKY3Jhc2hlc19kYXRhIDwtIHJlYWRfY3N2KCJodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vZHdpbGxpcy9qb3VyNDA1L3JlZnMvaGVhZHMvbWFpbi9kYXRhL3BnX2NyYXNoZXNfMjAyNF9wcmVzZW50LmNzdiIpCgpnbGltcHNlKGNyYXNoZXNfZGF0YSkKYGBgCgoKV2hhdCBkb2VzIGl0IGNvbnRhaW4gYW5kIHdoYXQgdGltZSBwZXJpb2QgZG9lcyBpdCBjb3Zlcj8gV2hpY2ggY29sdW1ucyB3aWxsIGJlIG1vc3QgaW1wb3J0YW50IGZvciB5b3VyIGFuYWx5c2lzPyBXaGF0J3MgbWlzc2luZyB0aGF0IHlvdSBtaWdodCBuZWVkIG9yIHdhbnQ/IFdoYXQgcXVlc3Rpb25zIGRvIHlvdSBoYXZlIGFib3V0IGl0IG9yIG5lZWQgaGVscCBhbnN3ZXJpbmc/IEFnYWluLCB0aGUgbW9yZSBkZXRhaWwsIHRoZSBoaWdoZXIgeW91ciBncmFkZS4KCgpGb3IgbXkgZmluYWwgcHJvamVjdCBJIGFtIGdvaW5nIHRvIHVzZSBjcmFzaCBkYXRhIGZyb20gUHJpbmNlIEdlb3JnZSdzIENvdW50eSB0aGF0IG15IHByb2Zlc3NvciBwcm92aWRlZC4gQWZ0ZXIgbG9va2luZyBvdmVyIHRoZSBkYXRhc2V0IEkgc2F3IHRoYXQgaXQgaGFzIDUyLDkyOSByb3dzIGFuZCAyMCBjb2x1bW5zIGFuZCBpbmNsdWRlcyBjcmFzaCByZWNvcmRzIGJlZ2lubmluZyBpbiBKYW51YXJ5IDIwMjQuIFRoZSBmaWxlIGlzIGxhYmVsZWQgYXMgY29udGFpbmluZyBkYXRhIGZyb20gMjAyNCB0byB0aGUgcHJlc2VudCBidXQgSSBzdGlsbCBuZWVkIHRvIGNoZWNrIHRoZSBsYXRlc3QgbW9udGggaW5jbHVkZWQgdG8gY29uZmlybSB0aGUgZXhhY3QgdGltZSBwZXJpb2QuIEFsc28gdGhlIGRhdGFzZXQgaGFzIGluZm9ybWF0aW9uIGFib3V0IGRpZmZlcmVudCB0eXBlcyBvZiBjcmFzaGVzLCB3aGVyZSB0aGV5IG9jY3VycmVkIGFuZCBob3cgc2VyaW91cyB0aGV5IHdlcmUuIFRoZXJlIGFyZSBhbHNvIGNvbHVtbnMgZm9yIGNyYXNoIHNldmVyaXR5LCBjb2xsaXNpb24gdHlwZSwgcm9hZCBuYW1lLCBjb3VudHkgYW5kIHdoZXRoZXIgYSBjcmFzaCBpbnZvbHZlZCBhIG5vbi1tb3RvcmlzdCwgbW90b3JjeWNsZSBvciBsYXJnZSB2ZWhpY2xlLiBUaGVyZSBhcmUgYWxzbyBsYXRpdHVkZSBhbmQgbG9uZ2l0dWRlIGNvb3JkaW5hdGVzLCB3aGljaCBJIHRoaW5rIGNvdWxkIGhlbHAgbWUgaWRlbnRpZnkgd2hlcmUgY3Jhc2hlcyBvY2N1cnJlZC4KCkFsc28gb25lIHRoaW5nIEkgc2F3IGlzIHRoYXQgdGhlIGRhdGFzZXQgaW5jbHVkZXMgY3Jhc2hlcyBmcm9tIGFjcm9zcyBQcmluY2UgR2VvcmdlJ3MgQ291bnR5IGFuZCBub3QganVzdCBDb2xsZWdlIFBhcmsuIFRoaXMgbWVhbnMgSSB3aWxsIG5lZWQgdG8gbmFycm93IGRvd24gdGhlIGRhdGEgdG8gZm9jdXMgb24ganVzdCB0aGUgVW5pdmVyc2l0eSBvZiBNYXJ5bGFuZC4gSSBhbHNvIHNhdyB0aGF0IHRoZSBkYXRhc2V0IGhhcyBhIGNvbHVtbiBjYWxsZWQgbW9udGggd2hpY2ggbGlzdHMgZGF0ZXMgaW4gYSB5ZWFyLW1vbnRoIGZvcm1hdC4gSSB0aGluayB0aGlzIHdpbGwgYmUgaGVscGZ1bCBiZWNhdXNlIEkgd2FudCB0byBjb21wYXJlIGNyYXNoZXMgZHVyaW5nIGRpZmZlcmVudCBtb250aHMgb2YgdGhlIHllYXIuCgpNb3N0IGltcG9ydGFudCBjb2x1bW5zOiAKClNvIHRoZXJlIGFyZSBhIGZldyBjb2x1bW5zIHRoYXQgSSB0aGluayB3aWxsIGJlIGVzcGVjaWFsbHkgaW1wb3J0YW50IGZvciBteSBwcm9qZWN0LiBGaXJzdCBpcyB0aGUgbW9udGggY29sdW1uIHdoaWNoIG1pZ2h0IGJlIHRoZSBtb3N0IGltcG9ydGFudCBjb2x1bW4gYmVjYXVzZSBteSBtYWluIHF1ZXN0aW9uIGlzIHdoZXRoZXIgcGVkZXN0cmlhbiBjcmFzaGVzIGhhcHBlbiBtb3JlIGZyZXF1ZW50bHkgZHVyaW5nIHRoZSBzY2hvb2wgeWVhciBjb21wYXJlZCB0byB0aGUgc3VtbWVyLiBJIHdhbnQgdG8gdXNlIHRoaXMgY29sdW1uIHRvIG9yZ2FuaXplIGNyYXNoZXMgYnkgbW9udGggYW5kIGNvbXBhcmUgU2VwdGVtYmVyIHRocm91Z2ggTWF5IHdpdGggSnVuZSB0aHJvdWdoIEF1Z3VzdC4gSSBjb3VsZCBhbHNvIGxvb2sgYXQgd2hldGhlciBjZXJ0YWluIG1vbnRocyBoYXZlIG1vcmUgY3Jhc2hlcyB0aGFuIG90aGVycy4KClRoZSBuZXh0IG9uZSBpcyB0aGUgbm9uLW1vdG9yaXN0IGNyYXNoIGNvbHVtbi4gSSB0aGluayB0aGlzIGlzIGFub3RoZXIgaW1wb3J0YW50IGNvbHVtbiBiZWNhdXNlIEkgd2FudCB0byBmb2N1cyBvbiBjcmFzaGVzIGludm9sdmluZyBwZWRlc3RyaWFucyByYXRoZXIgdGhhbiBqdXN0IGNhciBhY2NpZGVudHMuIFRoZSBjb2x1bW4gdXNlcyAiWWVzIiBhbmQgIk5vIiB2YWx1ZXMgd2hpY2ggc2hvdWxkIGFsbG93IG1lIHRvIGlkZW50aWZ5IGNyYXNoZXMgaW52b2x2aW5nIG5vbi1tb3RvcmlzdHMuIEJ1dCBJIG5lZWQgdG8gZmluZCBvdXQgZXhhY3RseSB3aGF0IGNvdW50cyBhcyBhIG5vbi1tb3RvcmlzdC4gSSBhbHNvIHRoaW5rIEkgbmVlZCB0byBiZSBjYXJlZnVsIGFib3V0IGRlc2NyaWJpbmcgdGhlIHJlc3VsdHMgYXMgcGVkZXN0cmlhbiBjcmFzaGVzIGJlY2F1c2Ugbm90IGV2ZXJ5IG5vbi1tb3RvcmlzdCBjcmFzaCBuZWNlc3NhcmlseSBpbnZvbHZlcyBzb21lb25lIHdhbGtpbmcuCgpBbHNvIGxhdGl0dWRlIGFuZCBsb25naXR1ZGUgd2lsbCBiZSBpbXBvcnRhbnQuIFRoZXNlIGNvbHVtbnMgd2lsbCBoZWxwIG1lIGZpZ3VyZSBvdXQgd2hlcmUgY3Jhc2hlcyBhcmUgaGFwcGVuaW5nLiBTaW5jZSBJIHdhbnQgdG8gZm9jdXMgb24gQ29sbGVnZSBQYXJrIGFuZCB0aGUgVW5pdmVyc2l0eSBvZiBNYXJ5bGFuZCBJIGNvdWxkIHBvdGVudGlhbGx5IHVzZSB0aGVzZSBjb29yZGluYXRlcyB0byBpZGVudGlmeSBjcmFzaGVzIG5lYXIgY2FtcHVzLiBJIGFsc28gdGhpbmsgaXQgd291bGQgYmUgaW50ZXJlc3RpbmcgdG8gY3JlYXRlIGEgbWFwIHNob3dpbmcgd2hlcmUgY3Jhc2hlcyBhcmUgY29uY2VudHJhdGVkLiBUaGlzIGNvdWxkIGhlbHAgbWUgZGV0ZXJtaW5lIHdoZXRoZXIgY2VydGFpbiBhcmVhcyBhcm91bmQgY2FtcHVzIGhhdmUgbW9yZSBjcmFzaGVzIHRoYW4gb3RoZXJzLgoKVGhlIHJvYWRuYW1lIGNvbHVtbiBpcyBpbXBvcnRhbnQgdG9vIGJlY2F1c2UgaXQgaW5jbHVkZXMgdGhlIG5hbWVzIG9mIHJvYWRzIHdoZXJlIGNyYXNoZXMgb2NjdXJyZWQuIEkgdGhpbmsgdGhpcyB3b3VsZCBiZSBoZWxwZnVsIGJlY2F1c2UgSSBjb3VsZCBpZGVudGlmeSB3aGljaCByb2FkcyBhcm91bmQgdGhlIFVuaXZlcnNpdHkgb2YgTWFyeWxhbmQgaGF2ZSB0aGUgbW9zdCBjcmFzaGVzLiBJIGNvdWxkIGFsc28gY29tcGFyZSBjcmFzaGVzIG9uIGRpZmZlcmVudCByb2FkcyB0byBzZWUgd2hldGhlciB0aGVyZSBhcmUgY2VydGFpbiBsb2NhdGlvbnMgdGhhdCBtaWdodCBiZSBtb3JlIGRhbmdlcm91cyBmb3IgcGVkZXN0cmlhbnMuCgpJIHRoaW5rIHRoZSBjcmFzaCBzZXZlcml0eSBkZXNjcmlwdGlvbiB3aWxsIGFsc28gYmUgZ29vZC4gVGhpcyBjb2x1bW4gZGVzY3JpYmVzIGhvdyBzZXJpb3VzIGEgY3Jhc2ggd2FzLiBJIHRoaW5rIHRoaXMgY291bGQgYWRkIGFub3RoZXIgcGFydCB0byBteSBzdG9yeSBiZWNhdXNlIEkgY291bGQgbG9vayBhdCBub3Qgb25seSBob3cgZnJlcXVlbnRseSBjcmFzaGVzIGhhcHBlbiBidXQgYWxzbyBob3cgc2VyaW91cyB0aGV5IGFyZS4KCkFsc28gdGhlIGNvbGxpc2lvbiBpbXBhY3QgZGVzY3JpcHRpb24gY29sdW1uIGlzIGltcG9ydGFudCBiZWNhdXNlIGl0IGRlc2NyaWJlcyB0aGUgdHlwZSBvZiBjb2xsaXNpb24uIFNvIEkgYW0gbm90IHN1cmUgaG93IHVzZWZ1bCB0aGlzIHdpbGwgYmUgZm9yIG15IG1haW4gcXVlc3Rpb24gYnV0IEkgdGhpbmsgaXQgY291bGQgcHJvdmlkZSBhZGRpdGlvbmFsIGNvbnRleHQgYWJvdXQgdGhlIHR5cGVzIG9mIGNyYXNoZXMgaGFwcGVuaW5nIGFyb3VuZCBDb2xsZWdlIFBhcmsuCgpMYXN0bHkgSSB0aGluayB0aGUgcmVwb3J0IG51bWJlciBjb2x1bW4gd2lsbCBiZSBnb29kIGJlY2F1c2UgaXQgc2VlbXMgdG8gaGF2ZSBhIHVuaXF1ZSByZXBvcnQgbnVtYmVyIGZvciBlYWNoIGNyYXNoLiBJIHRoaW5rIHRoaXMgY291bGQgYmUgaGVscGZ1bCBmb3IgY2hlY2tpbmcgd2hldGhlciB0aGVyZSBhcmUgZHVwbGljYXRlIHJlY29yZHMgaW4gdGhlIGRhdGFzZXQuIEkgd291bGQgd2FudCB0byBtYWtlIHN1cmUgSSBhbSBub3QgYWNjaWRlbnRhbGx5IGNvdW50aW5nIHRoZSBzYW1lIGNyYXNoIG1vcmUgdGhhbiBvbmNlLgoKTWlzc2luZyBJbmZvOgoKT25lIHRoaW5nIEkgbm90aWNlZCBpcyB0aGF0IHRoZXJlIGlzIG5vIG9idmlvdXMgY29sdW1uIHNwZWNpZmljYWxseSBpZGVudGlmeWluZyBwZWRlc3RyaWFuIGNyYXNoZXMuIFRoZXJlIGlzIGEgY29sdW1uIGZvciBub24tbW90b3Jpc3QgY3Jhc2hlcy4gSSB3b3VsZCBsaWtlIHRvIGtub3cgd2hldGhlciB0aGVyZSBpcyBhbm90aGVyIGRhdGFzZXQgdGhhdCBzZXBhcmF0ZXMgcGVkZXN0cmlhbnMgZnJvbSBiaWN5Y2xpc3RzIGFuZCBzY29vdGVyIHJpZGVycy4gCgpBbm90aGVyIHRoaW5nIHRoYXQgY291bGQgYmUgaGVscGZ1bCBpcyBhIGNvbHVtbiBzaG93aW5nIHdoZXRoZXIgYSBjcmFzaCBoYXBwZW5lZCBpbiBDb2xsZWdlIFBhcmsuIFJpZ2h0IG5vdyB0aGUgZGF0YXNldCBpbmNsdWRlcyBjb29yZGluYXRlcyBhbmQgcm9hZCBuYW1lcyBidXQgaXQgZG9lcyBub3QgbG9vayBsaWtlIHRoZXJlIGlzIGEgY2l0eSBjb2x1bW4uIFRoaXMgbWVhbnMgSSBtYXkgbmVlZCB0byB1c2UgdGhlIGNvb3JkaW5hdGVzIHRvIGlkZW50aWZ5IGNyYXNoZXMgd2l0aGluIENvbGxlZ2UgUGFyayB3aGljaCBJIGFtIGEgbGl0dGxlIG5lcnZvdXMgYWJvdXQuCgpBbHNvIEkgd291bGQgbGlrZSB0byBoYXZlIGlzIGluZm9ybWF0aW9uIGFib3V0IHRoZSBudW1iZXIgb2YgcGVkZXN0cmlhbnMgaW4gQ29sbGVnZSBQYXJrIGR1cmluZyBkaWZmZXJlbnQgdGltZXMgb2YgdGhlIHllYXIuIFRoaXMgbWlnaHQgYmUgYSBsaXR0bGUgYml0IGFtYml0aW91cyBidXQgZXZlbiBpZiBJIGZpbmQgdGhhdCBtb3JlIGNyYXNoZXMgaGFwcGVuIGR1cmluZyB0aGUgc2Nob29sIHllYXIgdGhhdCBjb3VsZCBzaW1wbHkgYmUgYmVjYXVzZSB0aGVyZSBhcmUgbW9yZSBwZW9wbGUgd2Fsa2luZyBhcm91bmQgY2FtcHVzLgoKSSB0aGluayBoYXZpbmcgaW5mb3JtYXRpb24gYWJvdXQgcGVkZXN0cmlhbiB0cmFmZmljIHdvdWxkIGFsc28gaGVscCBtZSBiZXR0ZXIgdW5kZXJzdGFuZCB3aGV0aGVyIHRoZSByaXNrIG9mIGEgY3Jhc2ggYWN0dWFsbHkgaW5jcmVhc2VzIGR1cmluZyB0aGUgc2Nob29sIHllYXIuCgpJIGFsc28gbmVlZCB0byBjb25zaWRlciB0aGF0IHRoZSBkYXRhc2V0IG1pZ2h0IG9ubHkgaW5jbHVkZSBjcmFzaGVzIHJlcG9ydGVkIHRvIHRoZSBwb2xpY2UuIElmIHNtYWxsZXIgYWNjaWRlbnRzIGFyZSBub3QgcmVwb3J0ZWQgdGhleSBtYXkgbm90IGJlIGluY2x1ZGVkIGluIHRoZSBkYXRhLgoKUXVlc3Rpb25zIEkgaGF2ZToKCjEuIEhvdyBjYW4gSSBuYXJyb3cgZG93biB0aGUgZGF0YSB0byBDb2xsZWdlIFBhcms/IFRoZSBkYXRhc2V0IG9ubHkgY292ZXJzIGFsbCBvZiBQcmluY2UgR2VvcmdlJ3MgQ291bnR5IGFuZCBJIGFtIHVuc3VyZSBvZiB0aGUgYmVzdCB3YXkgdG8gaXNvbGF0ZSBjcmFzaGVzIGFyb3VuZCB0aGUgVW5pdmVyc2l0eSBvZiBNYXJ5bGFuZC4gCgoyLiBEb2VzIHRoZSBub24tbW90b3Jpc3QgY2F0ZWdvcnkgaW5jbHVkZSBwZWRlc3RyaWFucywgYmljeWNsaXN0cyBhbmQgc2Nvb3RlciByaWRlcnM/IEkgdGhpbmsgdGhpcyBpcyBpbXBvcnRhbnQgdG8ga25vdyBiZWNhdXNlIEkgd2FudCB0byBtYWtlIHN1cmUgSSBhbSBhY2N1cmF0ZWx5IGRlc2NyaWJpbmcgdGhlIHR5cGVzIG9mIGNyYXNoZXMgSSBhbSBhbmFseXppbmcuCgozLiBIb3cgc2hvdWxkIEkgZGVmaW5lIHRoZSBzY2hvb2wgeWVhciBjb21wYXJlZCB0byB0aGUgc3VtbWVyPyBSaWdodCBub3cgSSBhbSB0aGlua2luZyBhYm91dCB1c2luZyBTZXB0ZW1iZXIgdGhyb3VnaCBNYXkgZm9yIHRoZSBzY2hvb2wgeWVhciBhbmQgSnVuZSB0aHJvdWdoIEF1Z3VzdCBmb3IgdGhlIHN1bW1lci4gQnV0IEkga25vdyB0aGF0IHRoZSBzY2hvb2wgeWVhciBpcyBtdWNoIGxvbmdlciB0aGFuIHRoZSBzdW1tZXIgc28gSSB3b3VsZCBuZWVkIHRvIGNvbXBhcmUgYXZlcmFnZSBtb250aGx5IGNyYXNoZXMgcmF0aGVyIHRoYW4ganVzdCB0b3RhbCBjcmFzaGVzIGJ1dCB0aGF0IHNlZW1zIGxpa2UgYSBsb3QuCgo0LiBXb3VsZCBpdCBiZSBwb3NzaWJsZSB0byBjcmVhdGUgYSBtYXAgc2hvd2luZyB3aGVyZSBjcmFzaGVzIGhhcHBlbiBtb3N0IGZyZXF1ZW50bHk/IEkgdGhpbmsgYSBtYXAgd291bGQgbWFrZSBteSBmaW5hbCBwcm9qZWN0IG1vcmUgaW50ZXJlc3RpbmcgYmVjYXVzZSByZWFkZXJzIGNvdWxkIHNlZSB3aGljaCByb2FkcyBvciBhcmVhcyBhcm91bmQgY2FtcHVzIGhhdmUgdGhlIG1vc3QgY3Jhc2hlcy4gT3IgaWYgdGhlcmUgYXJlIGFueSBvdGhlciBncmFwaGljcyB0aGF0IG1pZ2h0IGJlIGludGVyZXN0aW5nIHRvIHVzLgoKNS4gSG93IHNob3VsZCBJIHdvcmsgd2l0aCBpbmNvbXBsZXRlIGRhdGEgZnJvbSAyMDI2PyAKCk15IHBsYW46CgpTbyBJIHRoaW5rIHRoaXMgZGF0YXNldCBvZmZlcnMgYSBsb3Qgb2YgcG9zc2liaWxpdGllcyBmb3IgbXkgZmluYWwgcHJvamVjdC4gQXMgb2Ygbm93IEkgdGhpbmsgbXkgbWFpbiBnb2FsIGlzIHRvIGRldGVybWluZSB3aGV0aGVyIGNyYXNoZXMgaW52b2x2aW5nIHBlZGVzdHJpYW5zIG9yIG90aGVyIG5vbi1tb3RvcmlzdHMgYXJlIG1vcmUgY29tbW9uIGFyb3VuZCB0aGUgVW5pdmVyc2l0eSBvZiBNYXJ5bGFuZCBkdXJpbmcgdGhlIHNjaG9vbCB5ZWFyIGNvbXBhcmVkIHRvIHRoZSBzdW1tZXIuIEkgd2FudCB0byBzdGFydCBieSBuYXJyb3dpbmcgdGhlIGRhdGEgdG8gQ29sbGVnZSBQYXJrIGFuZCBpZGVudGlmeWluZyBub24tbW90b3Jpc3QgY3Jhc2hlcy4gSSB0aGluayB0aGUgYmlnZ2VzdCBjaGFsbGVuZ2Ugd2lsbCBiZSBtYWtpbmcgc3VyZSBJIGFtIHVzaW5nIHRoZSBjb3JyZWN0IGRhdGEgdG8gYW5zd2VyIG15IHF1ZXN0aW9uIGVzcGVjaWFsbHkgd2hlbiBpdCBjb21lcyB0byBpZGVudGlmeWluZyBwZWRlc3RyaWFuIGNyYXNoZXMgYW5kIGRldGVybWluaW5nIHdoaWNoIGNyYXNoZXMgaGFwcGVuZWQgbmVhciBjYW1wdXMuCgoKIyMgTm90ZXMKCkRhdGEgbGluazogaHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2R3aWxsaXMvam91cjQwNS9yZWZzL2hlYWRzL21haW4vZGF0YS9wZ19jcmFzaGVzXzIwMjRfcHJlc2VudC5jc3YgCgpGb3IgbXkgcHJvamVjdCBJIGFtIHBsYW5uaW5nIHRvIGZvY3VzIHNwZWNpZmljYWxseSBvbiBwZWRlc3RyaWFuIHNhZmV0eSBpbiBDb2xsZWdlIFBhcmssIHBhcnRpY3VsYXJseSBhcm91bmQgdGhlIFVuaXZlcnNpdHkgb2YgTWFyeWxhbmQgY2FtcHVzLgoKTXkgb3JpZ2luYWwgaHlwb3RoZXNpcyBpcyB0aGF0IHBlZGVzdHJpYW4gY3Jhc2hlcyBpbiBDb2xsZWdlIFBhcmsgYXJlIG1vcmUgY29tbW9uIGR1cmluZyB0aGUgc2Nob29sIHllYXIsIHdoZW4gbW9yZSBzdHVkZW50cyBhcmUgb24gY2FtcHVzLCBjb21wYXJlZCB0byB0aGUgc3VtbWVyIG1vbnRocyB3aGVuIGZld2VyIHN0dWRlbnRzIGFyZSBhcm91bmQuCgpJIHRoaW5rIHRoaXMgd291bGQgYmUgaW50ZXJlc3RpbmcgdG8gaW52ZXN0aWdhdGUgYmVjYXVzZSBDb2xsZWdlIFBhcmsgaGFzIGEgbG90IG9mIHN0dWRlbnRzIHdhbGtpbmcsIGJpa2luZyBhbmQgdXNpbmcgc2Nvb3RlcnMgdG8gZ2V0IGFyb3VuZCBjYW1wdXMuIFRoZXJlIGFyZSBhbHNvIHNldmVyYWwgYnVzeSByb2FkcyBzdXJyb3VuZGluZyB0aGUgdW5pdmVyc2l0eS4KCkkgd2FudCB0byB1c2UgdGhpcyBkYXRhIHRvIGRldGVybWluZSB3aGV0aGVyIHRoZXJlIGFyZSBjZXJ0YWluIG1vbnRocyB3aGVuIHBlZGVzdHJpYW4gY3Jhc2hlcyBoYXBwZW4gbW9yZSBmcmVxdWVudGx5IGFuZCB3aGV0aGVyIHRoZXJlIGFyZSBwYXJ0aWN1bGFyIGxvY2F0aW9ucyB3aGVyZSBjcmFzaGVzIGFyZSBtb3JlIGNvbW1vbi4KCkJlZm9yZSBiZWdpbm5pbmcgbXkgYW5hbHlzaXMsIEkgbmVlZCB0byB1bmRlcnN0YW5kIHdoYXQgaW5mb3JtYXRpb24gaXMgaW5jbHVkZWQgaW4gdGhlIGRhdGFzZXQsIGhvdyBjcmFzaGVzIGFyZSByZWNvcmRlZCBhbmQgd2hldGhlciB0aGUgZGF0YSBhbGxvd3MgbWUgdG8gaWRlbnRpZnkgcGVkZXN0cmlhbi1yZWxhdGVkIGNyYXNoZXMgc3BlY2lmaWNhbGx5LgoKCgpBZGQsIGNvbW1pdCBhbmQgcHVzaCB5b3VyIG5vdGVib29rIGFuZCBhbnkgZmlsZXMgeW91J3ZlIGFkZGVkLCBhbmQgc3VibWl0IHRoZSBHaXRIdWIgVVJMIHRvIHlvdXIgZmluYWxfcHJvamVjdC5SbWQgbm90ZWJvb2sgaW4gRUxNUy4K</div>
 
 
 

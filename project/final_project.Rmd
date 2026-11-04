@@ -4,20 +4,92 @@ output: html_notebook
 Name: "Andrea Augi"
 ---
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+Try to have your data identified and loaded (if not, make substantial progress on doing that) this week. You should create a notebook called final_project.Rmd in the project folder of your class repository. Put all notes and code in that document, and do not spare the details. If you have the data, describe the source, providing links to it and any documentation you can find. If you can load it from the Web, do that. If not, save a copy of the data in your project folder. IMPORTANT NOTE: do not save a copy if it is more than 100MB in size. Instead, contact me first for assistance.
 
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
 
 ```{r}
 library(tidyverse)
 ```
 
 
+Load the data and examine it using the tidyverse and read_csv, describing it in your project notebook. 
 
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+```{r load-data}
+library(tidyverse)
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+crashes_data <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/pg_crashes_2024_present.csv")
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+glimpse(crashes_data)
+```
 
+
+What does it contain and what time period does it cover? Which columns will be most important for your analysis? What's missing that you might need or want? What questions do you have about it or need help answering? Again, the more detail, the higher your grade.
+
+
+For my final project I am going to use crash data from Prince George's County that my professor provided. After looking over the dataset I saw that it has 52,929 rows and 20 columns and includes crash records beginning in January 2024. The file is labeled as containing data from 2024 to the present but I still need to check the latest month included to confirm the exact time period. Also the dataset has information about different types of crashes, where they occurred and how serious they were. There are also columns for crash severity, collision type, road name, county and whether a crash involved a non-motorist, motorcycle or large vehicle. There are also latitude and longitude coordinates, which I think could help me identify where crashes occurred.
+
+Also one thing I saw is that the dataset includes crashes from across Prince George's County and not just College Park. This means I will need to narrow down the data to focus on just the University of Maryland. I also saw that the dataset has a column called month which lists dates in a year-month format. I think this will be helpful because I want to compare crashes during different months of the year.
+
+Most important columns: 
+
+So there are a few columns that I think will be especially important for my project. First is the month column which might be the most important column because my main question is whether pedestrian crashes happen more frequently during the school year compared to the summer. I want to use this column to organize crashes by month and compare September through May with June through August. I could also look at whether certain months have more crashes than others.
+
+The next one is the non-motorist crash column. I think this is another important column because I want to focus on crashes involving pedestrians rather than just car accidents. The column uses "Yes" and "No" values which should allow me to identify crashes involving non-motorists. But I need to find out exactly what counts as a non-motorist. I also think I need to be careful about describing the results as pedestrian crashes because not every non-motorist crash necessarily involves someone walking.
+
+Also latitude and longitude will be important. These columns will help me figure out where crashes are happening. Since I want to focus on College Park and the University of Maryland I could potentially use these coordinates to identify crashes near campus. I also think it would be interesting to create a map showing where crashes are concentrated. This could help me determine whether certain areas around campus have more crashes than others.
+
+The roadname column is important too because it includes the names of roads where crashes occurred. I think this would be helpful because I could identify which roads around the University of Maryland have the most crashes. I could also compare crashes on different roads to see whether there are certain locations that might be more dangerous for pedestrians.
+
+I think the crash severity description will also be good. This column describes how serious a crash was. I think this could add another part to my story because I could look at not only how frequently crashes happen but also how serious they are.
+
+Also the collision impact description column is important because it describes the type of collision. So I am not sure how useful this will be for my main question but I think it could provide additional context about the types of crashes happening around College Park.
+
+Lastly I think the report number column will be good because it seems to have a unique report number for each crash. I think this could be helpful for checking whether there are duplicate records in the dataset. I would want to make sure I am not accidentally counting the same crash more than once.
+
+Missing Info:
+
+One thing I noticed is that there is no obvious column specifically identifying pedestrian crashes. There is a column for non-motorist crashes. I would like to know whether there is another dataset that separates pedestrians from bicyclists and scooter riders. 
+
+Another thing that could be helpful is a column showing whether a crash happened in College Park. Right now the dataset includes coordinates and road names but it does not look like there is a city column. This means I may need to use the coordinates to identify crashes within College Park which I am a little nervous about.
+
+Also I would like to have is information about the number of pedestrians in College Park during different times of the year. This might be a little bit ambitious but even if I find that more crashes happen during the school year that could simply be because there are more people walking around campus.
+
+I think having information about pedestrian traffic would also help me better understand whether the risk of a crash actually increases during the school year.
+
+I also need to consider that the dataset might only include crashes reported to the police. If smaller accidents are not reported they may not be included in the data.
+
+Questions I have:
+
+1. How can I narrow down the data to College Park? The dataset only covers all of Prince George's County and I am unsure of the best way to isolate crashes around the University of Maryland. 
+
+2. Does the non-motorist category include pedestrians, bicyclists and scooter riders? I think this is important to know because I want to make sure I am accurately describing the types of crashes I am analyzing.
+
+3. How should I define the school year compared to the summer? Right now I am thinking about using September through May for the school year and June through August for the summer. But I know that the school year is much longer than the summer so I would need to compare average monthly crashes rather than just total crashes but that seems like a lot.
+
+4. Would it be possible to create a map showing where crashes happen most frequently? I think a map would make my final project more interesting because readers could see which roads or areas around campus have the most crashes. Or if there are any other graphics that might be interesting to us.
+
+5. How should I work with incomplete data from 2026? 
+
+My plan:
+
+So I think this dataset offers a lot of possibilities for my final project. As of now I think my main goal is to determine whether crashes involving pedestrians or other non-motorists are more common around the University of Maryland during the school year compared to the summer. I want to start by narrowing the data to College Park and identifying non-motorist crashes. I think the biggest challenge will be making sure I am using the correct data to answer my question especially when it comes to identifying pedestrian crashes and determining which crashes happened near campus.
+
+
+## Notes
+
+Data link: https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/pg_crashes_2024_present.csv 
+
+For my project I am planning to focus specifically on pedestrian safety in College Park, particularly around the University of Maryland campus.
+
+My original hypothesis is that pedestrian crashes in College Park are more common during the school year, when more students are on campus, compared to the summer months when fewer students are around.
+
+I think this would be interesting to investigate because College Park has a lot of students walking, biking and using scooters to get around campus. There are also several busy roads surrounding the university.
+
+I want to use this data to determine whether there are certain months when pedestrian crashes happen more frequently and whether there are particular locations where crashes are more common.
+
+Before beginning my analysis, I need to understand what information is included in the dataset, how crashes are recorded and whether the data allows me to identify pedestrian-related crashes specifically.
+
+
+
+Add, commit and push your notebook and any files you've added, and submit the GitHub URL to your final_project.Rmd notebook in ELMS.
