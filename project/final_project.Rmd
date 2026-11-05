@@ -76,9 +76,22 @@ My plan:
 So I think this dataset offers a lot of possibilities for my final project. As of now I think my main goal is to determine whether crashes involving pedestrians or other non-motorists are more common around the University of Maryland during the school year compared to the summer. I want to start by narrowing the data to College Park and identifying non-motorist crashes. I think the biggest challenge will be making sure I am using the correct data to answer my question especially when it comes to identifying pedestrian crashes and determining which crashes happened near campus.
 
 
+
+Updated CSV with city and zip code added as columns:
+
+
+```{r load-data}
+crashes_data <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/pg_crashes_geocoded.csv")
+glimpse(crashes_data)
+```
+
+
 ## Notes
 
 Data link: https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/pg_crashes_2024_present.csv 
+
+Updated link: https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/pg_crashes_geocoded.csv 
+
 
 For my project I am planning to focus specifically on pedestrian safety in College Park, particularly around the University of Maryland campus.
 
