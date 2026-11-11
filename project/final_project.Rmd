@@ -4,6 +4,26 @@ output: html_notebook
 Name: "Andrea Augi"
 ---
 
+Given the kinds of tests that we've done in this class, give me an idea of what kinds of analyses you think are appropriate/useful for your project. This list could change, but err on the side of including something, even if you don't get to it later. To do this, you should look at previous assignments/activities and judge whether the data you have and the hypotheses you're testing are applicable to those tests or processes. If you're not sure, tell me that, too, but you should have some ideas. Again, the more detail, the higher your grade.
+
+
+### Possible Tests To Run
+
+
+One test I want to do is calculate the mean, median and standard deviation of monthly non-motorist crashes in College Park. You  suggested starting with these calculations, and I think they will be  helpful because my main question focuses on comparing averages. So I plan to calculate the average number of crashes per month during the school year and compare that to the average during the summer. I think using monthly averages instead of totals is important because the school year has nine months while the summer only has three. I also want to calculate the median to see what a typical month looks like and the standard deviation to understand how much the number of crashes changes from month to month.
+
+Another test I think could be useful is a t-test. We have used t-tests in class to compare averages and determine whether differences are statistically significant. I think I could compare the average monthly number of non-motorist crashes during the school year to the average during the summer. My null hypothesis would be that there is no difference between the two averages, and my alternative hypothesis would be that the average is higher during the school year. I am a little unsure whether a t-test is the best option because the number of crashes per month might be small. So I don’t really know if this would be good for my data
+
+I think maybe calculating z-scores could be interesting. Earlier in the semester we used z-scores to identify unusual values in accident data. I could use the same method to see whether certain months in College Park had unusually high or low numbers of non-motorist crashes. But I would need to be careful not to assume that an increase in crashes was caused by students returning without having more information to support that conclusion.
+
+Creating graphs might also be one of the  most useful parts of my project. In previous assignments we used ggplot to create histograms, bar charts, scatterplots and other visualizations. I could make a line graph showing the number of non-motorist crashes in College Park each month beginning in January 2024. This could possibly show if crashes increase or decrease during certain months and patterns.  I would also want to make other data visualizations but I am not sure what would work the best for my data so let me know what you think. I feel like a map could be cool to show where the crashes are happening but I don’t know how to do that. Just something else to think about. 
+
+I think something else that can be interesting is correlation too. This is something new we started learning but might be worth looking into.  I could also create a scatterplot to go with this. I am not sure if this would be a good method or not so I think this is something I would need more guidance on before deciding whether to include it.
+
+
+----------NOV_4-------------------------------------------------
+
+
 Try to have your data identified and loaded (if not, make substantial progress on doing that) this week. You should create a notebook called final_project.Rmd in the project folder of your class repository. Put all notes and code in that document, and do not spare the details. If you have the data, describe the source, providing links to it and any documentation you can find. If you can load it from the Web, do that. If not, save a copy of the data in your project folder. IMPORTANT NOTE: do not save a copy if it is more than 100MB in size. Instead, contact me first for assistance.
 
 
