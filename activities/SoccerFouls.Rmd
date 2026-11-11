@@ -52,5 +52,7 @@ matches25 |>
 
 Answer: The correlation is 0.015 and this is very close to zero. This means that there is almost no relationship at all between fouls and goal differential. Also the scatterplot shows this as well because the dots are pretty spread out and the blue line looks like it is almost flat too. So this means that more fouls does not look like it affects whether a team wins or loses by more goals. The correlation and the scatterplot also relate to each other because both are showing that more fouls do not seem to be connected to a higher or lower goal differential.
 
+We changed the fouls to look at shots on goal instead. After we did this, I noticed that as shots on goal goes up so does goal differential.
+
 
 When you are done, save your work, switch to GitHub Desktop, then add, commit and push your changes to GitHub and submit the URL of the notebook in ELMS.
