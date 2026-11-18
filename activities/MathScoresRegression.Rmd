@@ -32,7 +32,8 @@ schools |> arrange(`FARMS Pct`) |> head(10)
 
 Look at the distribution of FARMS percentages. Do any values look unusual or suspicious? What might it mean if a school has a FARMS percentage of exactly 100? Write two or three sentences describing what you see and whether anything concerns you.
 
-ANSWER HERE
+
+ANSWER HERE: What is drawing my attention right now is that several schools have a FARMS percentage of exactly 100%, which I find unusual. This could mean that every student at those schools qualifies for free or reduced-price meals. But I would want to look into this further because I am unsure whether these percentages are accurate or if there is another reason they are so high. There is also a very large gap from the percentages that are 100 to the ones that are not. This is also interesting and I want to know why the gap is so large between them. 
 
 
 ### Task 2: Create a Scatterplot and Describe the Results
@@ -50,7 +51,8 @@ schools |>
 
 Describe what you see. Is there a clear trend? Does the regression line look like it represents the data well, or does it seem to be pulled in an odd direction? Connect what you observed in Task 1 to what you see here.
 
-ANSWER HERE
+
+ANSWER HERE: After looking at the data, it looks like there is a somewhat positive trend. The data points are scattered though so I do not think there is a strong relationship between FARMS percentages and math scores. What draws my attention the most is the large gap between schools with FARMS percentages around 50% and those at exactly 100%. I noticed this in Task 1 too that the schools with 100% FARMS percentages seem unusual and may be pulling the line upward. I would want to see what the line looks like without those schools to determine whether they are affecting the overall trend.
 
 
 ### Task 3: Run the Regression Model
@@ -68,7 +70,8 @@ The **p-value** tells you whether the relationship is statistically significant.
 
 Report all three values and describe what they tell you. Does this model support the school board member's claim? Is this even a model worth using?
 
-ANSWER HERE
+
+ANSWER HERE: The p-value is 0.123 and it is not statistically significant. The Adjusted R-squared is 0.0254 and the FARMS percentage explains only about 2.54% of the variation in math score and I think this is pretty low. The coefficient is 0.12349 and it is positive so the FARMS percentage increases and the predicted math scores would also increase slightly. Even though they do have an increase I think it is very small so there is probably a week relationship between the two things. The model is showing a small positive relationship but it is not providing enough evidence to support a claim that FARMS percentage predicts math performance. I do not think this model is very useful for making predictions because it explains very little of the variation in math scores. I would also want to investigate the schools with 100% FARMS percentages because they may be affecting the results.
 
 
 ### Task 4: What's Driving the Problem? Filter and Rerun.
@@ -98,7 +101,11 @@ cat("  Adjusted R-squared:", summary(model_filtered)$adj.r.squared, "\n")
 
 How did removing those schools change the model? Did the coefficient change direction? Did the p-value or R-squared improve meaningfully? What does this tell you about the influence of suspicious data values on a regression model?
 
-ANSWER HERE
+
+ANSWER HERE: After we removed the schools with a FARMS percentage of 100% there were a few changes I found. 
+
+
+The coefficient remained positive but increased from 0.12349 to 0.40400. So the positive relationship was able to become stronger. Also the p-value did decrease to 0.0429. This makes the relationship statistically significant. The adjusted R-squared increased from 2.54% to 6.49%. There is still a very small amount of variation in math scores. What is drawing my attention the most is how much the results changed just by removing the schools with a FARMS percentage of 100%. I think this shows just how unusual the data can influence the model and also can cause misleading results. But I would still want to investigate if those values are actually incorrect before permanently removing them.
 
 
 ### Task 5: Even the Better Model Has Problems
@@ -132,7 +139,8 @@ head(schools_filtered |> select(1, `FARMS Pct`, `% Met or Exceeded Math Expectat
 
 What are the largest residuals? Given the model's weak R-squared, how much confidence would you have in labeling these schools as over- or under-performers? Why?
 
-ANSWER HERE
+
+ANSWER HERE: The largest residuals I noticed are from Gulph Elementary School -36.66, Hereford Elementary School -32.53 and Whitemarsh Elementary School -30.80. What draws my attention right now is how different the actual math scores are from the predicted scores. I don't think I would want to label these schools as over- or under-performers because the adjusted R-squared is only 6.49%. So I think this means FARMS percentage explains very little of the differences in math scores and there are likely other factors affecting student performance.
 
 
 ### Task 6: Write the Story Pitch
@@ -141,4 +149,6 @@ You've now run two models, examined the data quality and seen that even a cleane
 
 Write a short story pitch (3-5 sentences) that addresses the following: Does the data support or contradict the claim? What data quality issues did you find? What would you need - different data, a different model, additional reporting - before you could responsibly publish a story about this claim? Who would you call first?
 
-ANSWER HERE
+
+ANSWER HERE: I do not think that the data supports the school board member's claim that schools with fewer students on free and reduced-price meals perform better on math tests. I actually think that both of the models showed a somewhat positive relationship but neither of them had a lot of variation in math scores. One issue I saw was that a lot of schools had a FARMS percentage of exactly 100% and when we removed those schools it changed the results. Before publishing any stories, I would want to verify the data and look at other factors that could affect the scores. I think I would first contact the school district to find out why some schools reported a FARMS percentage of 100%.
+
