@@ -4,6 +4,122 @@ output: html_notebook
 Name: "Andrea Augi"
 ---
 
+Try to apply some of the code that we've used to your data to actually run some of those tests. See how far you get. When you run into errors - and that's absolutely the goal here - try to figure out what the error messages mean, through searching the web. If you use AI for this, you must create a share link and include the link in your notebook.
+
+For any results that you're able to generate, tell me what you think they say in the notebook. Again, the more detail, the higher your grade.
+
+## Load the tidyverse
+
+```{r}
+library(tidyverse)
+library(knitr)
+```
+
+## Loading the Data
+
+```{r load-data}
+crashes_data <- read_csv("https://raw.githubusercontent.com/dwillis/jour405/refs/heads/main/data/pg_crashes_geocoded.csv")
+glimpse(crashes_data)
+```
+
+## Calculating Total Number of Crashes Per Month
+
+```{r}
+monthly_crashes <- crashes_data |>
+  group_by(month) |>
+  summarize(total_crashes = n())
+```
+
+## Calculating Mean, Median and Standard Deviation
+
+```{r}
+monthly_crashes |>
+  summarize(
+    mean_crashes = mean(total_crashes),
+    median_crashes = median(total_crashes),
+    sd_crashes = sd(total_crashes))
+```
+
+What do you think the results say in the notebook?
+
+
+ANSWER HERE: The results show that there are about 1,557 crashes per month with a median of 1,568. What stood out to me was how close the mean and median are to each other. The standard deviation is about 155 crashes and this shows that the number of crashes varies from month to month. I wanted to look at these statistics to better understand what a typical month looks like. I am interested in seeing which months have unusually high or low numbers of crashes and whether those changes could be related to the school year or summer months. But I think I would need to look specifically at pedestrian crashes in College Park before drawing any conclusions about my ideas.
+
+
+## Calculating t-test
+
+**Hypotheses:**
+
+- **H₀ (Null):** The average number of monthly crashes during the school year is equal to or less than the average number of monthly crashes during the summer.
+- **H₁ (Alternative):** The average number of monthly crashes during the school year is greater than the average number of monthly crashes during the summer.
+
+This is my hypothesis. I was having trouble with this code becayse when we did it it was a one sample t-test. I think for this it would have to be a two-sample t-test but I am not entirely sure how I would do that. So right now I am skipping over this test and will come back to it when I am able to do the right code. 
+
+
+## Calculating z-scores
+
+```{r}
+monthly_crashes <- monthly_crashes |>
+  mutate(
+    mean_crashes = mean(total_crashes),
+    sd_crashes = sd(total_crashes),
+    z_score = (total_crashes - mean_crashes) / sd_crashes)
+```
+    
+# Display the data with z-scores
+
+```{r}
+monthly_crashes |>
+  select(month, total_crashes, z_score) |>
+  head(10) |>
+  kable(digits = 2)
+```
+  
+What do you think the results say in the notebook?
+
+
+ANSWER HERE: What stood out to me was that October 2024 had the highest number of crashes out of the months with 1,838 crashes and a z-score of 1.82. Also February had the lowest number of crashes with a z-score of -0.73. I thought it was interesting that July was slightly below average but September and October were above average. This could possibly suggest that crashes are more common during the school year but June also had an above-average number of crashes. None of the months I think had shown extremely unusual z-scores. I would want to look at more months and focus specifically on pedestrian crashes in College Park before drawing any conclusions about my thoughts.
+
+
+## Calculating correlation
+
+```{r}
+monthly_crashes <- monthly_crashes |>
+  mutate(month_number = row_number())
+```
+
+```{r}
+monthly_crashes |>
+  summarize(correlation = cor(month_number, total_crashes, method="pearson"))
+```
+
+What do you think the results say in the notebook?
+
+
+ANSWER HERE: I think the results show a negative correlation of about -0.43. This is telling me that the number of crashes has generally decreased over time. I thought this was interesting because I was unsure whether crashes were becoming more or less common. But I think that the correlation is not strong enough to suggest a consistent decrease every month. I would want to investigate whether the decrease is related other factors. This result does not directly answer my thoughts about whether pedestrian crashes in College Park are more common during the school year than during the summer.
+
+
+## Calculating Histograms 
+
+```{r}
+monthly_crashes |> ggplot() + geom_histogram(aes(x = total_crashes), binwidth = 100)
+```
+
+```{r}
+monthly_crashes |> ggplot() + 
+  geom_histogram(aes(x = total_crashes), binwidth = 100) +
+  geom_vline(aes(xintercept = mean(total_crashes)), color = "red", linetype = "dashed", size = 1)
+```
+
+What do you think the results say in the notebook?
+
+
+ANSWER HERE: The histogram shows that most months had between 1,450 and 1,650 crashes. Also the average looks like it is around 1,557 crashes. What stood out to me was that most months were grouped close to the average. But there was one month with only about 1,100 crashes which was much lower than the others. I would be interested in finding out which month this was and whether the lower number was due to different situations like seasonal changes or maybe missing data. I would also want to compare the summer months to the school year to see if there is a noticeable difference in the number of crashes.
+
+Are there any other tests you think I should run that could be good for my project?
+
+----------NOV_11-------------------------------------------------
+
 Given the kinds of tests that we've done in this class, give me an idea of what kinds of analyses you think are appropriate/useful for your project. This list could change, but err on the side of including something, even if you don't get to it later. To do this, you should look at previous assignments/activities and judge whether the data you have and the hypotheses you're testing are applicable to those tests or processes. If you're not sure, tell me that, too, but you should have some ideas. Again, the more detail, the higher your grade.
 
 
